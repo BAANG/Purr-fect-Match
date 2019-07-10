@@ -13,4 +13,13 @@ router.get("/", function (req, res) {
    res.render("index")
 })
 
+router.get("/test", function (req, res) {
+    console.log(req.method, "request completed.");
+
+
+   res.send("Hello World")
+})
+
+
+
 module.exports = router;
