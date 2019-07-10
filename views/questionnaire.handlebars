@@ -1,0 +1,165 @@
+<div class="container">
+    <div class="section">
+        <div id="userPref" class="col m12 l7">
+            <div class="card-panel grey lighten-5 hoverable">
+                <h4 class="center light-blue-text"><i class="material-icons">search</i> Submit Your Pet Preferences</h4>
+                <div class="row">
+                    <form class="col s12">
+                        {{!-- pet type form group --}}
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <div id="type">
+                                    <h4>Pet Type</h4>
+                                    <hr>
+                                    <p>
+                                        <label for="dog">
+                                            <input class="with-gap" name="type" type="radio" id="dog" value="dog"
+                                                checked />
+                                            <span>Dog</span>
+                                        </label>
+                                    </p>
+                                    <p>
+                                        <label for="cat">
+                                            <input class="with-gap" name="type" type="radio" id="cat" value="cat" />
+                                            <span>Cat</span>
+                                        </label>
+                                    </p>
+                                    <p>
+                                        <label for="other">
+                                            <input class="with-gap" name="type" type="radio" id="other" value="other" />
+                                            <span>Other</span>
+                                        </label>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{!-- gender form group --}}
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <div id="gender">
+                                    <h4>Gender</h4>
+                                    <hr>
+                                    <p>
+                                        <label for="male">
+                                            <input class="with-gap" name="gender" type="radio" id="male" value="male"
+                                                checked />
+                                            <span>Male</span>
+                                        </label>
+                                    </p>
+                                    <p>
+                                        <label for="female">
+                                            <input class="with-gap" name="gender" type="radio" id="female"
+                                                value="female" />
+                                            <span>Female</span>
+                                        </label>
+                                    </p>
+                                    <p>
+                                        <label for="either">
+                                            <input class="with-gap" name="gender" type="radio" id="either"
+                                                value="either" />
+                                            <span>Either</span>
+                                        </label>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{!-- age form group --}}
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <div id="age">
+                                    <h4>Age</h4>
+                                    <hr>
+                                    <p>
+                                        <label for="baby">
+                                            <input class="with-gap" name="age" type="radio" id="baby" checked />
+                                            <span>Baby</span>
+                                        </label>
+                                    </p>
+                                    <p>
+                                        <label for="young">
+                                            <input class="with-gap" name="age" type="radio" id="young" />
+                                            <span>Young</span>
+                                        </label>
+                                    </p>
+                                    <p>
+                                        <label for="adult">
+                                            <input class="with-gap" name="age" type="radio" id="adult" />
+                                            <span>Adult</span>
+                                        </label>
+                                    </p>
+                                    <p>
+                                        <label for="senior">
+                                            <input class="with-gap" name="age" type="radio" id="senior" />
+                                            <span>Senior</span>
+                                        </label>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{!-- size form group --}}
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <div id="size">
+                                    <h4>Size</h4>
+                                    <hr>
+                                    <p>
+                                        <label for="x-small">
+                                            <input class="with-gap" name="size" type="radio" id="x-small" checked />
+                                            <span>X-Small</span>
+                                        </label>
+                                    </p>
+                                    <p>
+                                        <label for="small">
+                                            <input class="with-gap" name="size" type="radio" id="small" />
+                                            <span>Small</span>
+                                        </label>
+                                    </p>
+                                    <p>
+                                        <label for="medium">
+                                            <input class="with-gap" name="size" type="radio" id="medium" />
+                                            <span>Medium</span>
+                                        </label>
+                                    </p>
+                                    <p>
+                                        <label for="Large">
+                                            <input class="with-gap" name="size" type="radio" id="Large" />
+                                            <span>Large</span>
+                                        </label>
+                                    </p>
+                                    <p>
+                                        <label for="X-Large">
+                                            <input class="with-gap" name="size" type="radio" id="x-large" />
+                                            <span>X-Large</span>
+                                        </label>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{!-- address location form group --}}
+                        <div class="row">
+                            <div class="input-field col s4">
+                                <input id="address" type="text" class="validate">
+                                <label for="address">Address</label>
+                            </div>
+                            <div class="input-field col s3">
+                                <input id="city" type="text" class="validate">
+                                <label for="city">City</label>
+                            </div>
+                            <div class="input-field col s2">
+                                <input id="state" type="text" class="validate">
+                                <label for="state">State</label>
+                            </div>
+                        </div>
+
+                        <button id="submit" class="btn-large waves-effect waves-light light-blue"><i
+                                class="material-icons right">location_searching</i>Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
