@@ -10,8 +10,8 @@ router.get("/", function (req, res) {
     console.log(req.method, "request completed.");
 
 
-    res.send("Log in page goes here.")
-    return;
+    // res.send("Log in page goes here.")
+    // return;
     res.render("login")
 })
 

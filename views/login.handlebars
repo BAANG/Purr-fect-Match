@@ -1,16 +1,18 @@
-<div id="widget-container"></div>
+{{!-- Style this page with a log in to google badge. Maybe include several other forms of log in --}}
+<div class="container">
+  <div class="row center-align">
+    <div class="col s12">
+      Log In:
+    </div>
+  </div>
 
-<script>
-  var signIn = new OktaSignIn({baseUrl: 'https://{yourOktaDomain}'});
-  signIn.renderEl({
-    el: '#widget-container'
-  }, function success(res) {
-    if (res.status === 'SUCCESS') {
-      console.log('Do something with this sessionToken', res.session.token);
-    } else {
-    // The user can be in another authentication state that requires further action.
-    // For more information about these states, see:
-    //   https://github.com/okta/okta-signin-widget#rendereloptions-success-error
-    }
-  });
-</script>
+  <div class="row center-align">
+    <div class="col s12">
+
+    </div>
+    <a
+      href="https://dev-951880.okta.com/oauth2/v1/authorize?idp=0oaw0jvevnYiVK0K5356&client_id=0oaw0s1jmw5VVEgYc356&response_type=code&response_mode=fragment&scope=openid&redirect_uri=http://localhost:8000/main&state=WM6D&nonce=YsG76jo	">
+      <img src="/assets/img/g-login-btns/btn_google_signin_light_normal_web@2x.png" alt="Login via Google">
+    </a>
+  </div>
+</div>
