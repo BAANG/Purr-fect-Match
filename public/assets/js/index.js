@@ -1,4 +1,7 @@
 $(document).ready(function () {
+    $('.parallax').parallax();
+    $('select').formSelect();
+
     // Ajax call to retrieve the access token to the Petfinder API
     $.ajax({
         url: "https://api.petfinder.com/v2/oauth2/token",
@@ -13,14 +16,19 @@ $(document).ready(function () {
                 url: `https://api.petfinder.com/v2/types/${event.target.value}/breeds`,
                 method: "GET",
                 beforeSend: function (xhr) {
-                    // Authorization header 
+
+                    // Authorization header
                     xhr.setRequestHeader("Authorization", "Bearer " + token);
                 },
             }).then(function (response) {
                 console.log(response)
-               var breeds = response.breeds.map(breed => breed.name);
+                let breeds = response.breeds.map(breed => breed.name);
+                let breedsKeyValue = breeds.reduce(function (map, breed) {
+                    map[breed] = null;
+                    return map
+                }, {});
 
-                $('#breed').autocomplete({ source: breeds });
+                $("#breeds").autocomplete({ data: breedsKeyValue });
             })
         })
     })
