@@ -23,5 +23,61 @@
 	</head>
     <body>
 		{{{ body }}}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+ 
+
+ <script type="text/javascript">
+
+ $(document).ready(function(){
+    $('select').not('.disabled').formSelect();
+    });
+    
+    window.setTimeout(()=>{
+          console.log("setTimeOut is completed.");
+          this.selectOptions = [
+            {value:1,name:"Option 1"},
+            {value:2,name:"Option 2"},
+            {value:3,name:"Option 3"}
+          ]
+        },10000);
+    
+    $(document).ready(function(){
+        $('select').material_select();
+      });
+      
+      $(document).ready(function(){
+        $('select').formSelect();
+      });
+    
+      $(document).ready(function () {
+        // Ajax call to retrieve the access token to the Petfinder API
+        $.ajax({
+            url: "https://api.petfinder.com/v2/oauth2/token",
+            method: "POST",
+            data: "grant_type=client_credentials&client_id=ycqJ1y4t1txs2Tm7959XrLlxHNoEz0YNoCC5YIY8oIh3v46SYh&client_secret=1mqC7cVSodCsKMibLnziY3kAqpKkeNS3KwJJ9sEQ"
+        }).then(function (response) {
+            var token = response["access_token"]
+    
+            // Get the breeds for the autocomplete form
+            $("#types").change(function (event) {
+                $.ajax({
+                    url: `https://api.petfinder.com/v2/types/${event.target.value}/breeds`,
+                    method: "GET",
+                    beforeSend: function (xhr) {
+                        // Authorization header 
+                        xhr.setRequestHeader("Authorization", "Bearer " + token);
+                    },
+                }).then(function (response) {
+                    console.log(response)
+                   var breeds = response.breeds.map(breed => breed.name);
+    
+                    $('#autocomplete-input').autocomplete({ data: breeds });
+                })
+            })
+        })
+    });
+</script>
+ bn
 	</body>
 </html>
