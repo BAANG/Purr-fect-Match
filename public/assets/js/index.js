@@ -55,4 +55,26 @@ $("#search").on("click", function(event) {
     // console.log(aniCoat)
     // console.log(aniTemp)
     // console.log(userLocation)
+
+    $.ajax({
+        url: "https://api.petfinder.com/v2/oauth2/token",
+        method: "POST",
+        data: "grant_type=client_credentials&client_id=ycqJ1y4t1txs2Tm7959XrLlxHNoEz0YNoCC5YIY8oIh3v46SYh&client_secret=1mqC7cVSodCsKMibLnziY3kAqpKkeNS3KwJJ9sEQ"
+    }).then(function (response) {
+        var token = response["access_token"];
+        $.ajax({
+            url: `https://api.petfinder.com/v2/animals?type=`+aniType+`&breed=`+aniBreed+`&size=`+aniSize+`&gender=`+aniGender+`&age=`+aniAge+`&coat=`+aniCoat+`&location=`+userLocation+``,
+            method: "GET",
+            beforeSend: function (xhr) {
+
+                // Authorization header
+                xhr.setRequestHeader("Authorization", "Bearer " + token);
+            },
+            error: function() {
+                console.log("There was an error!")
+            }
+        }).then(function (response) {
+            console.log(response.animals)
+        })
+    })
 })
