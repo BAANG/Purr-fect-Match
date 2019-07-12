@@ -45,7 +45,6 @@ $("#search").on("click", function(event) {
     var aniAge = $("#age").val();
     var aniCoat = $("#coat").val();
     var userLocation = "&location=";
-
     var loc = $("#location").val();
     if (loc === "") {
         userLocation = ""
