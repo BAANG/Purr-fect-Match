@@ -43,18 +43,17 @@ $("#search").on("click", function(event) {
     var aniSize = $("#size").val();
     var aniAge = $("#age").val();
     var aniCoat = $("#coat").val();
-    var aniTemp = $("#temperament").val();
-    var userLocation = $("#location").val();
+    var userLocation = "&location=";
+    
+    var loc = $("#location").val();
+    if (loc === "") {
+        userLocation = ""
+    }
+    else {
+        userLocation += loc;
+    }
 
     console.log("test")
-    // console.log(aniBreed)
-    // console.log(aniType)
-    // console.log(aniGender)
-    // console.log(aniSize)
-    // console.log(aniAge)
-    // console.log(aniCoat)
-    // console.log(aniTemp)
-    // console.log(userLocation)
 
     $.ajax({
         url: "https://api.petfinder.com/v2/oauth2/token",
@@ -63,7 +62,7 @@ $("#search").on("click", function(event) {
     }).then(function (response) {
         var token = response["access_token"];
         $.ajax({
-            url: `https://api.petfinder.com/v2/animals?type=`+aniType+`&breed=`+aniBreed+`&size=`+aniSize+`&gender=`+aniGender+`&age=`+aniAge+`&coat=`+aniCoat+`&location=`+userLocation+``,
+            url: `https://api.petfinder.com/v2/animals?type=`+aniType+`&breed=`+aniBreed+`&size=`+aniSize+`&gender=`+aniGender+`&age=`+aniAge+`&coat=`+aniCoat+userLocation,
             method: "GET",
             beforeSend: function (xhr) {
 
@@ -117,7 +116,7 @@ $("#search").on("click", function(event) {
             //Pet description
             console.log(aniData[n].description);
 
-            //Children OK (T/F)
+            //Children OK (T/F, can be null)
             console.log(aniData[n].environment.children);
 
             //Gender
