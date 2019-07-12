@@ -34,6 +34,7 @@ $(document).ready(function () {
     })
 });
 
+
 $("#search").on("click", function(event) {
     event.preventDefault();
 
@@ -56,3 +57,4 @@ $("#search").on("click", function(event) {
     // console.log(aniTemp)
     // console.log(userLocation)
 })
+
