@@ -1,8 +1,8 @@
 <header>
     <nav>
-        <div class="nav-wrapper black">
+        <div class="nav-wrapper white">
             <div id="nav-mobile" class="right">
-                <i class="material-icons">favorite_border</i>
+                <a href="/favorites"><i class="material-icons">favorite_border</i></a>
             </div>
         </div>
     </nav>
@@ -23,7 +23,7 @@
 <div class="row">
     <div class="col s12 m3 l3">
         <div class="container">
-            <h4 class="center"><i class="material-icons">search</i>Search a pet</h4>
+            <h4 class="center"><i class="material-icons">search</i>Search</h4>
 
             <div class="input-field col s12">
                 <select id="types">
@@ -39,7 +39,7 @@
                 </select>
             </div>
 
-            <!-- {{!-- Breed form group --}} -->
+            <!-- Breed -->
             <div class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
@@ -49,7 +49,7 @@
                 </div>
             </div>
 
-            <!-- {{!-- gender form group --}} -->
+            <!-- gender -->
             <div class="input-field col s12">
                 <h6>Gender</h6>
                 <p>
@@ -65,7 +65,7 @@
                 </p>
             </div>
 
-            <!-- {{!-- age form group --}} -->
+            <!-- age  -->
             <div class="input-field col s12">
                 <select multiple>
                     <option disabled selected>Age</option>
@@ -76,10 +76,10 @@
                 </select>
             </div>
 
-            <!-- {{!-- size form group --}} -->
+            <!-- size  -->
             <div class="input-field col s12">
                 <select multiple>
-                    <option value="size" disabled selected>Size</option>
+                    <option disabled selected>Size</option>
                     <option value="small">Small</option>
                     <option value="medium">Medium</option>
                     <option value="large">Large</option>
@@ -87,10 +87,10 @@
                 </select>
             </div>
 
-            <!-- {{!-- coat form group --}} -->
+            <!-- coat -->
             <div class="input-field col s12">
                 <select multiple>
-                    <option value="age" disabled selected>Coat</option>
+                    <option disabled selected>Coat</option>
                     <option value="short">Short</option>
                     <option value="medium">Medium</option>
                     <option value="long">Long</option>
@@ -100,10 +100,10 @@
                 </select>
             </div>
 
-            <!-- {{!-- tags form group --}} -->
+            <!-- tags -->
             <div class="input-field col s12">
                 <select multiple>
-                    <option value="temperament" disabled selected>Temperament</option>
+                    <option disabled selected>Temperament</option>
                     <option value="cute">Cute</option>
                     <option value="intelligent">Intelligent</option>
                     <option value="large">Large</option>
@@ -113,19 +113,19 @@
                 </select>
             </div>
 
-            <!-- {{!-- address location form group --}} -->
+            <!-- location-->
             <div class="input-field col s12">
                 <input id="location" type="text" class="validate">
                 <label class="active" for="location">Location</label>
             </div>
         </div>
     </div>
-</div>
-
-<div class="col s12 m9 l9">
-    <div class="container">
-        <div class="row">
-            <div class="card-section">
+    
+    <div class="col s12 m9 l9">
+        <div class="container">
+            <div class="row">
+                <div id="card-section">
+                </div>
             </div>
         </div>
     </div>
