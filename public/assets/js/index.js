@@ -30,18 +30,48 @@ $(document).ready(function () {
                 $("#breeds").autocomplete({ data: breedsKeyValue });
             })
         })
+    });
+});
 
-        // card section
+
+
+$("#search").on("click", function(event) {
+    event.preventDefault();
+
+    var aniType = $("#types").val();
+    var aniBreed = $("#breeds").val();
+    var aniGender = $(".gender:checked").val();
+    var aniSize = $("#size").val();
+    var aniAge = $("#age").val();
+    var aniCoat = $("#coat").val();
+    var userLocation = "&location=";
+    var loc = $("#location").val();
+    if (loc === "") {
+        userLocation = ""
+    }
+    else {
+        userLocation += loc;
+    }
+
+    $.ajax({
+        url: "https://api.petfinder.com/v2/oauth2/token",
+        method: "POST",
+        data: "grant_type=client_credentials&client_id=ycqJ1y4t1txs2Tm7959XrLlxHNoEz0YNoCC5YIY8oIh3v46SYh&client_secret=1mqC7cVSodCsKMibLnziY3kAqpKkeNS3KwJJ9sEQ"
+    }).then(function (response) {
+        var token = response["access_token"];
         $.ajax({
-            url: "https://api.petfinder.com/v2/animals",
+            url: `https://api.petfinder.com/v2/animals?type=`+aniType+`&breed=`+aniBreed+`&limit=30&size=`+aniSize+`&gender=`+aniGender+`&age=`+aniAge+`&coat=`+aniCoat+userLocation,
             method: "GET",
             beforeSend: function (xhr) {
+
                 // Authorization header
                 xhr.setRequestHeader("Authorization", "Bearer " + token);
             },
+            error: function() {
+                console.log("There was an error!")
+            }
         }).then(function (response) {
-            console.log(response);
-
+            
             $("#card-section").empty();
 
             if (response.animals.length === 0) {
@@ -53,7 +83,6 @@ $(document).ready(function () {
                 for (let i = 0; i < response.animals.length; i++) {
                     let animal = response.animals[i];
                     let photoUri = animal.photos.length > 0 ? animal.photos[0].medium : "assets/img/no-image-available.svg";
-
 
                     var container = $("<div>").addClass("col s12 m4")
 
@@ -92,7 +121,7 @@ $(document).ready(function () {
                         "src": photoUri,
                         "alt": "Animal",
                     }).css("max-height", "500px"));
-                    modalContent.append($("<p>").text("Breed: " + animal.breed));
+                    modalContent.append($("<p>").text("Breed: " + animal.breeds.primary));
                     modalContent.append($("<p>").text("Gender: " + animal.gender));
                     modalContent.append($("<p>").text("Age: " + animal.age));
                     modalContent.append($("<p>").text("Color: " + animal.colors.primary));
@@ -109,32 +138,7 @@ $(document).ready(function () {
                 };
             };
         })
-    });
-});
-
-
-
-$("#search").on("click", function(event) {
-    event.preventDefault();
-
-    var aniType = $("#types").val();
-    var aniBreed = $("#breeds").val();
-    var aniGender = $(".gender:checked").val();
-    var aniSize = $("#size").val();
-    var aniAge = $("#age").val();
-    var aniCoat = $("#coat").val();
-    var aniTemp = $("#temperament").val();
-    var userLocation = $("#location").val();
-
-    console.log("test")
-    // console.log(aniBreed)
-    // console.log(aniType)
-    // console.log(aniGender)
-    // console.log(aniSize)
-    // console.log(aniAge)
-    // console.log(aniCoat)
-    // console.log(aniTemp)
-    // console.log(userLocation)
+    })
 })
 
 
