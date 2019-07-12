@@ -2,6 +2,22 @@
     line-height: 130%;
 }
 
-.mainbody {
-    margin-top: 10px;
+.cardbody {
+    margin-top: 45px;
 }
+
+.searchbody {
+    border-right: 1px solid grey;
+    padding-bottom: 40px !important;
+}
+
+#search {
+    margin-left:8px;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 100vh;  
+    margin-bottom: 0;
+  }

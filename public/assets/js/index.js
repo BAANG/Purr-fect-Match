@@ -86,7 +86,7 @@ $("#search").on("click", function(event) {
 
                     var container = $("<div>").addClass("col s12 m4")
 
-                    var card = $("<div>").addClass("card");
+                    var card = $("<div>").addClass("card grey lighten-4");
                     container.append(card)
                     var cardImage = $("<div>").addClass("card-image");
                     var image = $("<img>").attr({
