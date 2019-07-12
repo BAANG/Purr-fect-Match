@@ -25,7 +25,7 @@
         <div class="container">
             <h4 class="center"><i class="material-icons">search</i>Search</h4>
 
-            <div class="input-field col s12">
+             <div class="input-field col s12">
                 <select id="types">
                     <option disabled selected>Type</option>
                     <option value="dog">Dog</option>
@@ -38,7 +38,7 @@
                 </select>
             </div>
 
-            <!-- Breed -->
+            <!-- {{!-- Breed form group --}} -->
             <div class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
@@ -48,7 +48,7 @@
                 </div>
             </div>
 
-            <!-- gender -->
+            <!-- {{!-- gender form group --}} -->
             <div class="input-field col s12">
                 <h6>Gender</h6>
                 <p>
@@ -63,7 +63,7 @@
                 </p>
             </div>
 
-            <!-- age  -->
+            <!-- {{!-- age form group --}} -->
             <div class="input-field col s12">
                 <select id="age" multiple>
                     <option disabled selected>Age</option>
@@ -74,11 +74,10 @@
                 </select>
             </div>
 
-            <!-- size  -->
+            <!-- {{!-- size form group --}} -->
             <div class="input-field col s12">
-
-                <select multiple>
-                    <option disabled selected>Size</option>
+                <select id="size" multiple>
+                    <option value="size" disabled selected>Size</option>
                     <option value="small">Small</option>
                     <option value="medium">Medium</option>
                     <option value="large">Large</option>
@@ -86,11 +85,10 @@
                 </select>
             </div>
 
-            <!-- coat -->
+            <!-- {{!-- coat form group --}} -->
             <div class="input-field col s12">
-
-                <select multiple>
-                    <option disabled selected>Coat</option>
+                <select id="coat" multiple>
+                    <option value="coat" disabled selected>Coat</option>
                     <option value="short">Short</option>
                     <option value="medium">Medium</option>
                     <option value="long">Long</option>
@@ -100,22 +98,10 @@
                 </select>
             </div>
 
-            <!-- tags -->
-            <div class="input-field col s12">
-                <select multiple>
-                    <option disabled selected>Temperament</option>
-                    <option value="cute">Cute</option>
-                    <option value="intelligent">Intelligent</option>
-                    <option value="playful">Playful</option>
-                    <option value="happy">Happy</option>
-                    <option value="affectionate">Affectionate</option>
-                </select>
-            </div>
-
-            <!-- location-->
+            <!-- {{!-- address location form group --}} -->
             <div class="input-field col s12">
                 <input id="location" type="text" class="validate">
-                <label class="active" for="location">Location</label>
+                <label class="active" for="location">Location (City, State)</label>
             </div>
 
             <a class="waves-effect waves-light btn" id="search">Search</a>
