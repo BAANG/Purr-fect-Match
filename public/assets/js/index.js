@@ -113,10 +113,28 @@ $(document).ready(function () {
 });
 
 
-/* On the card: status -> (adoptable, adopted, found);  name; photo +
-<i class="material-icons">favorite_border</i>
-On the modal: type, breed, size, gender, age, color, coat, name, photo, description + button [where to find me?]
-on the full page: organization, distance, location
- */
+
+$("#search").on("click", function(event) {
+    event.preventDefault();
+
+    var aniType = $("#types").val();
+    var aniBreed = $("#breeds").val();
+    var aniGender = $(".gender:checked").val();
+    var aniSize = $("#size").val();
+    var aniAge = $("#age").val();
+    var aniCoat = $("#coat").val();
+    var aniTemp = $("#temperament").val();
+    var userLocation = $("#location").val();
+
+    console.log("test")
+    // console.log(aniBreed)
+    // console.log(aniType)
+    // console.log(aniGender)
+    // console.log(aniSize)
+    // console.log(aniAge)
+    // console.log(aniCoat)
+    // console.log(aniTemp)
+    // console.log(userLocation)
+})
 
 

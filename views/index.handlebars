@@ -31,7 +31,6 @@
                     <option value="dog">Dog</option>
                     <option value="cat">Cat</option>
                     <option value="rabbit">Rabbit</option>
-                    <option value="small-furry">Small and Furry</option>
                     <option value="Horse">Horse</option>
                     <option value="bird">Bird</option>
                     <option value="barnyard">Barnyard</option>
@@ -54,12 +53,11 @@
                 <h6>Gender</h6>
                 <p>
                     <label for="male">
-                        <input class="with-gap" name="gender" type="radio" id="male" value="male" checked />
+                        <input class="with-gap gender" name="gender" type="radio" id="male" value="male" checked />
                         <span>Male</span>
                     </label>
-
                     <label for="female">
-                        <input class="with-gap" name="gender" type="radio" id="female" value="female" />
+                        <input class="with-gap gender" name="gender" type="radio" id="female" value="female" />
                         <span>Female</span>
                     </label>
                 </p>
@@ -67,10 +65,10 @@
 
             <!-- age  -->
             <div class="input-field col s12">
-                <select multiple>
+                <select id="age" multiple>
                     <option disabled selected>Age</option>
                     <option value="baby">Baby</option>
-                    <option value="yong">Young</option>
+                    <option value="young">Young</option>
                     <option value="adult">Adult</option>
                     <option value="senior">Senior</option>
                 </select>
@@ -78,6 +76,7 @@
 
             <!-- size  -->
             <div class="input-field col s12">
+
                 <select multiple>
                     <option disabled selected>Size</option>
                     <option value="small">Small</option>
@@ -89,6 +88,7 @@
 
             <!-- coat -->
             <div class="input-field col s12">
+
                 <select multiple>
                     <option disabled selected>Coat</option>
                     <option value="short">Short</option>
@@ -106,8 +106,7 @@
                     <option disabled selected>Temperament</option>
                     <option value="cute">Cute</option>
                     <option value="intelligent">Intelligent</option>
-                    <option value="large">Large</option>
-                    <option value="playful">playful</option>
+                    <option value="playful">Playful</option>
                     <option value="happy">Happy</option>
                     <option value="affectionate">Affectionate</option>
                 </select>
@@ -118,6 +117,8 @@
                 <input id="location" type="text" class="validate">
                 <label class="active" for="location">Location</label>
             </div>
+
+            <a class="waves-effect waves-light btn" id="search">Search</a>
         </div>
     </div>
     
