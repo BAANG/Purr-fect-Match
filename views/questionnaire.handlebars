@@ -1,36 +1,20 @@
-<header>
-    <nav>
-        <div class="nav-wrapper white">
-            <div id="nav-mobile" class="right">
-                <a href="/favorites"><i class="material-icons">favorite_border</i></a>
-            </div>
-        </div>
-    </nav>
+<div class="container">
+        <div class="section">
+            <div id="userPref" class="col m12 l7">
+                <div class="card-panel grey lighten-5 hoverable">
+                    <h4 class="center light-blue-text"><i class="material-icons">find_in_page</i> Choose Your Pet
+                        Preferences</h4>
+                    <div class="row">
+                        <form class="col s12">
 
-    <div class="parallax-container center valign-wrapper" style="height: 300px;">
-        <div class="parallax"><img src="assets/img/catdog.png"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col s12 white-text">
-                    <h2>Purr-fect Match</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-
-<!-- Page Layout -->
-<div class="row">
-    <div class="col s12 m3 l3">
-        <div class="container">
-            <h4 class="center"><i class="material-icons">search</i>Search</h4>
-
+            <!-- pet types select -->
             <div class="input-field col s12">
                 <select id="types">
                     <option disabled selected>Type</option>
                     <option value="dog">Dog</option>
                     <option value="cat">Cat</option>
                     <option value="rabbit">Rabbit</option>
+                    <option value="small-furry">Small and Furry</option>
                     <option value="Horse">Horse</option>
                     <option value="bird">Bird</option>
                     <option value="barnyard">Barnyard</option>
@@ -38,7 +22,7 @@
                 </select>
             </div>
 
-            <!-- Breed -->
+            <!-- {{!-- Breed form group --}} -->
             <div class="col s12">
                 <div class="row">
                     <div class="input-field col s12">
@@ -48,37 +32,37 @@
                 </div>
             </div>
 
-            <!-- gender -->
+            <!-- {{!-- gender form group --}} -->
             <div class="input-field col s12">
                 <h6>Gender</h6>
                 <p>
                     <label for="male">
-                        <input class="with-gap gender" name="gender" type="radio" id="male" value="male" checked />
+                        <input class="with-gap" name="gender" type="radio" id="male" value="male" checked />
                         <span>Male</span>
                     </label>
+
                     <label for="female">
-                        <input class="with-gap gender" name="gender" type="radio" id="female" value="female" />
+                        <input class="with-gap" name="gender" type="radio" id="female" value="female" />
                         <span>Female</span>
                     </label>
                 </p>
             </div>
 
-            <!-- age  -->
+            <!-- {{!-- age form group --}} -->
             <div class="input-field col s12">
-                <select id="age" multiple>
+                <select multiple>
                     <option disabled selected>Age</option>
                     <option value="baby">Baby</option>
-                    <option value="young">Young</option>
+                    <option value="yong">Young</option>
                     <option value="adult">Adult</option>
                     <option value="senior">Senior</option>
                 </select>
             </div>
 
-            <!-- size  -->
+            <!-- {{!-- size form group --}} -->
             <div class="input-field col s12">
-
                 <select multiple>
-                    <option disabled selected>Size</option>
+                    <option value="size" disabled selected>Size</option>
                     <option value="small">Small</option>
                     <option value="medium">Medium</option>
                     <option value="large">Large</option>
@@ -86,11 +70,10 @@
                 </select>
             </div>
 
-            <!-- coat -->
+            <!-- {{!-- coat form group --}} -->
             <div class="input-field col s12">
-
                 <select multiple>
-                    <option disabled selected>Coat</option>
+                    <option value="age" disabled selected>Coat</option>
                     <option value="short">Short</option>
                     <option value="medium">Medium</option>
                     <option value="long">Long</option>
@@ -100,46 +83,41 @@
                 </select>
             </div>
 
-            <!-- tags -->
+            <!-- {{!-- tags form group --}} -->
             <div class="input-field col s12">
                 <select multiple>
-                    <option disabled selected>Temperament</option>
+                    <option value="temperament" disabled selected>Temperament</option>
                     <option value="cute">Cute</option>
                     <option value="intelligent">Intelligent</option>
-                    <option value="playful">Playful</option>
+                    <option value="large">Large</option>
+                    <option value="playful">playful</option>
                     <option value="happy">Happy</option>
                     <option value="affectionate">Affectionate</option>
                 </select>
             </div>
 
-            <!-- location-->
-            <div class="input-field col s12">
-                <input id="location" type="text" class="validate">
-                <label class="active" for="location">Location</label>
-            </div>
-
-            <a class="waves-effect waves-light btn" id="search">Search</a>
-        </div>
-    </div>
-    
-    <div class="col s12 m9 l9">
-        <div class="container">
+            <!-- {{!-- address location form group --}} -->
             <div class="row">
-                <div id="card-section">
+                    <div class="input-field col s5">
+                        <input id="address" type="text" class="validate">
+                        <label for="address">Address</label>
+                    </div>
+                    <div class="input-field col s3">
+                        <input id="city" type="text" class="validate">
+                        <label for="city">City</label>
+                    </div>
+                    <div class="input-field col s2">
+                        <input id="state" type="text" class="validate">
+                        <label for="state">State</label>
+                    </div>
                 </div>
-            </div>
+
+                <button id="submit" class="btn-large waves-effect waves-light light-blue"><i
+                    class="material-icons right">location_searching</i>Submit</button>
+            </form>
         </div>
     </div>
 </div>
 
-<footer class="page-footer grey lighten-1">
-    <div class="container">
-        <div class="row">
-        </div>
-    </div>
-    <div class="footer-copyright">
-        <div class="container center">
-            © 2019 Purr-fect Match
-        </div>
-    </div>
-</footer>
+
+
