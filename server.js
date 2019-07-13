@@ -5,7 +5,8 @@
 // Dependencies
 // =============================================================
 var express = require("express");
-var routes = require("./routes/html-routes.js")
+var htmtRoutes = require("./routes/html-routes.js");
+var apiRoutes = require("./routes/api-routes.js");
 
 // Sets up the Express App
 // =============================================================
@@ -27,8 +28,8 @@ app.use(express.static("public"));
 
 // Routes
 // =============================================================
-// require("./routes/api-routes.js")(app);
-app.use(routes);
+app.use(htmtRoutes);
+app.use(apiRoutes);
 
 // Starts the server to begin listening
 // =============================================================

@@ -33,8 +33,6 @@ $(document).ready(function () {
     });
 });
 
-
-
 $("#search").on("click", function (event) {
     event.preventDefault();
 
@@ -110,19 +108,43 @@ $("#search").on("click", function (event) {
                     modal.append(modalContent)
                     cardContent.append(modal)
 
-                    var favorite = $("<i>").addClass("material-icons").css({ "color": "red", "float": "right" }).text("favorite_border");
+                    let isFavorite = false;
+                    let favorite = $("<i>").addClass("material-icons").css({ "color": "red", "float": "right" }).text("favorite_border");
                     modalContent.append(favorite);
 
+                    $.ajax({
+                        url: `/favorites/${animal.id}`,
+                        method: "GET"
+                    }).done(function (data) {
+                        isFavorite = data.isFavorite
+                        if (isFavorite) {
+                            favorite.addClass("material-icons").css("color", "red").text("favorite");
+                        }
+                    });
+
                     favorite.click(function (event) {
-                        $.ajax({
-                            url: `/favorites/${animal.id}`,
-                            method: "POST"
-                        }).done(function () {
-                            $(event.target).addClass("material-icons").css("color", "red").text("favorite");
-                            M.toast({ html: "Recorded in your favorites!", displayLength: 2000, classes: "teal" });
-                        }).fail(function () {
-                            M.toast({ html: "Unable to record in your favorites", displayLength: 2000, classes: "red" });
-                        })
+                        if (isFavorite) {
+                            $.ajax({
+                                url: `/favorites/${animal.id}`,
+                                method: "DELETE"
+                            }).done(function () {
+                                $(event.target).addClass("material-icons").css("color", "red").text("favorite_border");
+                                isFavorite = false;
+                            }).fail(function () {
+                                M.toast({ html: "Unable to remove from your favorites", displayLength: 2000, classes: "red" });
+                            })
+                        } else {
+                            $.ajax({
+                                url: `/favorites/${animal.id}`,
+                                method: "POST"
+                            }).done(function () {
+                                $(event.target).addClass("material-icons").css("color", "red").text("favorite");
+                                M.toast({ html: "Recorded in your favorites!", displayLength: 2000, classes: "teal" });
+                                isFavorite = true;
+                            }).fail(function () {
+                                M.toast({ html: "Unable to record in your favorites", displayLength: 2000, classes: "red" });
+                            })
+                        }
                     });
 
                     modalContent.append($("<h4>").text(animal.name));

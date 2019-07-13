@@ -35,11 +35,6 @@ router.get("/favorites", function (req, res) {
     res.render("favorites")
 })
 
-router.post("/favorites/:id", function (req, res) {
-    console.log(req.method, `New favorite for animal id ${req.params.id}`);
-    res.sendStatus(200)
-})
-
 router.get("/test", function (req, res) {
     console.log(req.method, "request completed.");
 
