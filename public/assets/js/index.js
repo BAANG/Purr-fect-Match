@@ -35,7 +35,7 @@ $(document).ready(function () {
 
 
 
-$("#search").on("click", function(event) {
+$("#search").on("click", function (event) {
     event.preventDefault();
 
     var aniType = $("#types").val();
@@ -44,14 +44,8 @@ $("#search").on("click", function(event) {
     var aniSize = $("#size").val();
     var aniAge = $("#age").val();
     var aniCoat = $("#coat").val();
-    var userLocation = "&location=";
-    var loc = $("#location").val();
-    if (loc === "") {
-        userLocation = ""
-    }
-    else {
-        userLocation += loc;
-    }
+    var userLocation = $("#location").val();
+    var userLocationParam = userLocation === "" ? "" : `&location=${userLocation}`;
 
     $.ajax({
         url: "https://api.petfinder.com/v2/oauth2/token",
@@ -60,18 +54,17 @@ $("#search").on("click", function(event) {
     }).then(function (response) {
         var token = response["access_token"];
         $.ajax({
-            url: `https://api.petfinder.com/v2/animals?type=`+aniType+`&breed=`+aniBreed+`&limit=30&size=`+aniSize+`&gender=`+aniGender+`&age=`+aniAge+`&coat=`+aniCoat+userLocation,
+            url: `https://api.petfinder.com/v2/animals?type=${aniType}&breed=${aniBreed}&limit=30&size=${aniSize}&gender=${aniGender}&age=${aniAge}&coat=${aniCoat}${userLocationParam}`,
             method: "GET",
             beforeSend: function (xhr) {
-
                 // Authorization header
                 xhr.setRequestHeader("Authorization", "Bearer " + token);
             },
-            error: function() {
+            error: function () {
                 console.log("There was an error!")
             }
         }).then(function (response) {
-            
+
             $("#card-section").empty();
 
             if (response.animals.length === 0) {
@@ -116,6 +109,22 @@ $("#search").on("click", function(event) {
                     var modalContent = $("<div>").addClass("modal-content");
                     modal.append(modalContent)
                     cardContent.append(modal)
+
+                    var favorite = $("<i>").addClass("material-icons").css({ "color": "red", "float": "right" }).text("favorite_border");
+                    modalContent.append(favorite);
+
+                    favorite.click(function (event) {
+                        $.ajax({
+                            url: `/favorites/${animal.id}`,
+                            method: "POST"
+                        }).done(function () {
+                            $(event.target).addClass("material-icons").css("color", "red").text("favorite");
+                            M.toast({ html: "Recorded in your favorites!", displayLength: 2000, classes: "teal" });
+                        }).fail(function () {
+                            M.toast({ html: "Unable to record in your favorites", displayLength: 2000, classes: "red" });
+                        })
+                    });
+
                     modalContent.append($("<h4>").text(animal.name));
                     modalContent.append($("<img>").attr({
                         "src": photoUri,
@@ -129,6 +138,7 @@ $("#search").on("click", function(event) {
                     modalContent.append($("<p>").text("Coat: " + animal.coat));
                     modalContent.append($("<p>").text("Description: " + animal.description));
 
+
                     var modalFooter = $("<div>").addClass("modal-footer");
                     modal.append(modalFooter)
                     var findMe = $("<a>").attr("href", "/pets/" + animal.id).addClass("modal-close waves-effect waves-green btn-flat").text("Where to find me?")
@@ -138,7 +148,7 @@ $("#search").on("click", function(event) {
                 };
             };
         })
-    })
-})
+    });
+});
 
 
