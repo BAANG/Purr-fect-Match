@@ -59,8 +59,9 @@ $("#search").on("click", function (event) {
                 // Authorization header
                 xhr.setRequestHeader("Authorization", "Bearer " + token);
             },
-            error: function () {
-                console.log("There was an error!")
+
+            error: function() {
+                $('#card-section').append($("<h2>").html("<br>There was an error in your search!"))
             }
         }).then(function (response) {
 
@@ -78,7 +79,7 @@ $("#search").on("click", function (event) {
 
                     var container = $("<div>").addClass("col s12 m4")
 
-                    var card = $("<div>").addClass("card");
+                    var card = $("<div>").addClass("card grey lighten-4");
                     container.append(card)
                     var cardImage = $("<div>").addClass("card-image");
                     var image = $("<img>").attr({
@@ -153,17 +154,34 @@ $("#search").on("click", function (event) {
                         "src": photoUri,
                         "alt": "Animal",
                     }).css("max-height", "500px"));
-                    var container = $("<div>").addClass("container left-align")
-                    modalContent.append(container)
 
-                    container.append($("<h6>").text("Breed: " + animal.breeds.primary));
-                    container.append($("<h6>").text("Gender: " + animal.gender));
-                    container.append($("<h6>").text("Age: " + animal.age));
-                    container.append($("<h6>").text("Color: " + animal.colors.primary));
-                    container.append($("<h6>").text("Size: " + animal.size));
-                    container.append($("<h6>").text("Coat: " + animal.coat));
-                    container.append($("<h6>").text("Description: " + animal.description));
-
+                    if (animal.breeds.primary === null) {
+                        modalContent.append($("<br>"))
+                    }
+                    else {
+                        modalContent.append($("<p>").html("<br>Breed: " + animal.breeds.primary));
+                    };
+                    if (!(animal.gender == null)) {
+                        modalContent.append($("<p>").text("Gender: " + animal.gender));
+                    };
+                    if (!(animal.age === null)) {
+                        modalContent.append($("<p>").text("Age: " + animal.age));
+                    };
+                    if (!(animal.colors.primary === null)) {
+                        modalContent.append($("<p>").text("Color: " + animal.colors.primary));
+                    };
+                    if (!(animal.size === null)) {
+                        modalContent.append($("<p>").text("Size: " + animal.size));
+                    };
+                    if (!(animal.coat === null)) {
+                        modalContent.append($("<p>").text("Coat: " + animal.coat));
+                    };
+                    if (animal.description === null) {
+                        modalContent.append($("<p>").html("<br>No description available."));
+                    }
+                    else {
+                        modalContent.append($("<p>").html("<br>Description: " + animal.description));
+                    };
 
                     var modalFooter = $("<div>").addClass("modal-footer");
                     modal.append(modalFooter)
