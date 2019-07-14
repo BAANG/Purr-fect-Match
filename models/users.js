@@ -7,7 +7,7 @@ module.exports = function(db, DataTypes) {
         login: DataTypes.STRING,
         location: DataTypes.STRING,
         favorites: DataTypes.STRING,
-        preferences: DataTypes.STRING,
+        preferences: DataTypes.BOOLEAN,
         has_preferences: {
             type: DataTypes.STRING,
             defaultValue: false
