@@ -7,6 +7,7 @@ var router = express.Router();
 
 // Routes
 // =============================================================
+// Route to add an animal from the favorite
 router.post("/favorites/:id", function (req, res) {
     console.log(req.method, `Adding favorite for animal id ${req.params.id}`);
     Favorite.create({
@@ -20,6 +21,7 @@ router.post("/favorites/:id", function (req, res) {
     });
 });
 
+// Route to delete an animal from the favorite
 router.delete("/favorites/:id", function (req, res) {
     console.log(req.method, `Deleting favorite for animal id ${req.params.id}`);
     Favorite.destroy({
@@ -35,7 +37,8 @@ router.delete("/favorites/:id", function (req, res) {
     });;
 });
 
-router.get("/favorites/:id", function (req, res) {
+// Route to get if the given animal id is a favorite
+router.get("/favorites/:id/isFavorite", function (req, res) {
     console.log(req.method, `Getting favorite for animal id ${req.params.id}`);
     Favorite.findOne({
         where: {
