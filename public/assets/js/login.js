@@ -12,6 +12,7 @@ var oktaSignIn = new OktaSignIn({
         ]
     }
 });
+
 if (oktaSignIn.token.hasTokensInUrl()) {
     oktaSignIn.token.parseTokensFromUrl(
         function success(res) {
@@ -46,7 +47,21 @@ if (oktaSignIn.token.hasTokensInUrl()) {
         if (res.status === 'ACTIVE') {
             console.log('Welcome back, ' + res.login);
             console.log(res.userId, "is the userId")
-            userLog.push(res.login, res.userId)
+
+            var newUser = { // Creates user object to be sent to database
+                userId: res.userId,
+                login: res.login,
+                location: null,
+                favorites: null,
+                preferences: null,
+                has_preferences: false
+            }
+            // TODO: Create conditional statement to prevent duplicate users from being created.
+                // ie. Check for user with unique userId and only create user if it doesn't exist. 
+            $.post("/api/users/" + res.userId, newUser, function(data) {
+                console.log(data)
+            })
+
             if (window.location.pathname === '/') {
                 window.location.replace(window.location.origin + '/main')
             }
@@ -67,4 +82,3 @@ if (oktaSignIn.token.hasTokensInUrl()) {
     });
 }
 
-console.log('This is the user email and userId', userLog);
