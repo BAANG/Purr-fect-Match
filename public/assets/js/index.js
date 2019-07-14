@@ -29,13 +29,12 @@ $(document).ready(function () {
 
                 $("#breeds").autocomplete({ data: breedsKeyValue });
             })
+
         })
     });
 });
 
-
-
-$("#search").on("click", function(event) {
+$("#search").on("click", function (event) {
     event.preventDefault();
 
     var aniType = $("#types").val();
@@ -44,14 +43,8 @@ $("#search").on("click", function(event) {
     var aniSize = $("#size").val();
     var aniAge = $("#age").val();
     var aniCoat = $("#coat").val();
-    var userLocation = "&location=";
-    var loc = $("#location").val();
-    if (loc === "") {
-        userLocation = ""
-    }
-    else {
-        userLocation += loc;
-    }
+    var userLocation = $("#location").val();
+    var userLocationParam = userLocation === "" ? "" : `&location=${userLocation}`;
 
     $.ajax({
         url: "https://api.petfinder.com/v2/oauth2/token",
@@ -60,18 +53,18 @@ $("#search").on("click", function(event) {
     }).then(function (response) {
         var token = response["access_token"];
         $.ajax({
-            url: `https://api.petfinder.com/v2/animals?type=`+aniType+`&breed=`+aniBreed+`&limit=30&size=`+aniSize+`&gender=`+aniGender+`&age=`+aniAge+`&coat=`+aniCoat+userLocation,
+            url: `https://api.petfinder.com/v2/animals?type=${aniType}&breed=${aniBreed}&limit=30&size=${aniSize}&gender=${aniGender}&age=${aniAge}&coat=${aniCoat}${userLocationParam}`,
             method: "GET",
             beforeSend: function (xhr) {
-
                 // Authorization header
                 xhr.setRequestHeader("Authorization", "Bearer " + token);
             },
+
             error: function() {
                 $('#card-section').append($("<h2>").html("<br>There was an error in your search!"))
             }
         }).then(function (response) {
-            
+
             $("#card-section").empty();
 
             if (response.animals.length === 0) {
@@ -116,11 +109,52 @@ $("#search").on("click", function(event) {
                     var modalContent = $("<div>").addClass("modal-content");
                     modal.append(modalContent)
                     cardContent.append(modal)
+
+                    let isFavorite = false;
+                    let favorite = $("<i>").addClass("material-icons").css({ "color": "red", "float": "right" }).text("favorite_border");
+                    modalContent.append(favorite);
+
+                    $.ajax({
+                        url: `/favorites/${animal.id}`,
+                        method: "GET"
+                    }).done(function (data) {
+                        isFavorite = data.isFavorite
+                        if (isFavorite) {
+                            favorite.addClass("material-icons").css("color", "red").text("favorite");
+                        }
+                    });
+
+                    favorite.click(function (event) {
+                        if (isFavorite) {
+                            $.ajax({
+                                url: `/favorites/${animal.id}`,
+                                method: "DELETE"
+                            }).done(function () {
+                                $(event.target).addClass("material-icons").css("color", "red").text("favorite_border");
+                                isFavorite = false;
+                            }).fail(function () {
+                                M.toast({ html: "Unable to remove from your favorites", displayLength: 2000, classes: "red" });
+                            })
+                        } else {
+                            $.ajax({
+                                url: `/favorites/${animal.id}`,
+                                method: "POST"
+                            }).done(function () {
+                                $(event.target).addClass("material-icons").css("color", "red").text("favorite");
+                                M.toast({ html: "Recorded in your favorites!", displayLength: 2000, classes: "teal" });
+                                isFavorite = true;
+                            }).fail(function () {
+                                M.toast({ html: "Unable to record in your favorites", displayLength: 2000, classes: "red" });
+                            })
+                        }
+                    });
+
                     modalContent.append($("<h4>").text(animal.name));
                     modalContent.append($("<img>").attr({
                         "src": photoUri,
                         "alt": "Animal",
                     }).css("max-height", "500px"));
+
                     if (animal.breeds.primary === null) {
                         modalContent.append($("<br>"))
                     }
@@ -158,7 +192,7 @@ $("#search").on("click", function(event) {
                 };
             };
         })
-    })
-})
+    });
+});
 
 
