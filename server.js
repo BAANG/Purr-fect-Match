@@ -5,7 +5,8 @@
 // Dependencies
 // =============================================================
 var express = require("express");
-var routes = require("./routes/html-routes.js")
+var htmlRoutes = require("./routes/html-routes.js");
+var apiRoutes = require("./routes/api-routes.js");
 
 // Sets up the Express App
 // =============================================================
@@ -31,8 +32,9 @@ app.use(express.static("public"));
 
 // Routes
 // =============================================================
-require("./routes/api-routes.js")(app);
-app.use(routes);
+app.use(htmlRoutes);
+app.use(apiRoutes);
+
 
 // Starts the server to begin listening and sync sequelize models
 // =============================================================
