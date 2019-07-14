@@ -29,6 +29,7 @@ $(document).ready(function () {
 
                 $("#breeds").autocomplete({ data: breedsKeyValue });
             })
+
         })
     });
 });
@@ -152,13 +153,16 @@ $("#search").on("click", function (event) {
                         "src": photoUri,
                         "alt": "Animal",
                     }).css("max-height", "500px"));
-                    modalContent.append($("<p>").text("Breed: " + animal.breeds.primary));
-                    modalContent.append($("<p>").text("Gender: " + animal.gender));
-                    modalContent.append($("<p>").text("Age: " + animal.age));
-                    modalContent.append($("<p>").text("Color: " + animal.colors.primary));
-                    modalContent.append($("<p>").text("Size: " + animal.size));
-                    modalContent.append($("<p>").text("Coat: " + animal.coat));
-                    modalContent.append($("<p>").text("Description: " + animal.description));
+                    var container = $("<div>").addClass("container left-align")
+                    modalContent.append(container)
+
+                    container.append($("<h6>").text("Breed: " + animal.breeds.primary));
+                    container.append($("<h6>").text("Gender: " + animal.gender));
+                    container.append($("<h6>").text("Age: " + animal.age));
+                    container.append($("<h6>").text("Color: " + animal.colors.primary));
+                    container.append($("<h6>").text("Size: " + animal.size));
+                    container.append($("<h6>").text("Coat: " + animal.coat));
+                    container.append($("<h6>").text("Description: " + animal.description));
 
 
                     var modalFooter = $("<div>").addClass("modal-footer");
