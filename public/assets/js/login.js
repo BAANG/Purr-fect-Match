@@ -34,6 +34,10 @@ if (oktaSignIn.token.hasTokensInUrl()) {
         // Session exists, show logged in state.
         if (res.status === 'ACTIVE') {
             console.log('Welcome back, ' + res.login);
+            console.log(res.userId, "is the userId")
+            if (window.location.pathname === '/') {
+                window.location.replace(window.location.origin + '/main')
+            }
             return;
         }
         // No session, show the login form
@@ -50,3 +54,4 @@ if (oktaSignIn.token.hasTokensInUrl()) {
         );
     });
 }
+
