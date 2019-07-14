@@ -12,9 +12,13 @@ var routes = require("./routes/html-routes.js")
 var app = express();
 var PORT = process.env.PORT || 8000;
 
+// Require our models for database syncing
+var db = require("./models")
+
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 
 // Set Handlebars.
 var exphbs = require("express-handlebars");
@@ -27,11 +31,13 @@ app.use(express.static("public"));
 
 // Routes
 // =============================================================
-// require("./routes/api-routes.js")(app);
+require("./routes/api-routes.js")(app);
 app.use(routes);
 
-// Starts the server to begin listening
+// Starts the server to begin listening and sync sequelize models
 // =============================================================
-app.listen(PORT, function() {
-  console.log("App listening on PORT " + PORT);
-});
+db.sequelize.sync({ force: true }).then(function () {
+  app.listen(PORT, function () {
+    console.log("App listening on PORT " + PORT);
+  });
+})

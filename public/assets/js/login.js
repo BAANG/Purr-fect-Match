@@ -1,21 +1,32 @@
+userLog = [];
+
 var oktaSignIn = new OktaSignIn({
     baseUrl: "https://dev-951880.okta.com/",
     clientId: "0oaw0s1jmw5VVEgYc356",
     authParams: {
         issuer: "https://dev-951880.okta.com/oauth2/default",
         responseType: ['token', 'id_token'],
-        display: 'page'
+        display: 'page',
+        idps: [
+            {type: 'GOOGLE', id: '0oaw0jvevnYiVK0K5356'}
+        ]
     }
 });
 if (oktaSignIn.token.hasTokensInUrl()) {
     oktaSignIn.token.parseTokensFromUrl(
         function success(res) {
             // The tokens are returned in the order requested by `responseType` above
+            console.log(res)
             var accessToken = res[0];
             var idToken = res[1]
 
+            userLog.push(idToken.claims.email)
+
             // Say hello to the person who just signed in:
             console.log('Hello, ' + idToken.claims.email);
+            if (window.location.pathname === '/') {
+                window.location.replace(window.location.origin + '/main')
+            }
 
             // Save the tokens for later use, e.g. if the page gets refreshed:
             oktaSignIn.tokenManager.add('accessToken', accessToken);
@@ -35,6 +46,7 @@ if (oktaSignIn.token.hasTokensInUrl()) {
         if (res.status === 'ACTIVE') {
             console.log('Welcome back, ' + res.login);
             console.log(res.userId, "is the userId")
+            userLog.push(res.login, res.userId)
             if (window.location.pathname === '/') {
                 window.location.replace(window.location.origin + '/main')
             }
@@ -55,3 +67,4 @@ if (oktaSignIn.token.hasTokensInUrl()) {
     });
 }
 
+console.log('This is the user email and userId', userLog);

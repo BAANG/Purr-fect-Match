@@ -1,22 +1,20 @@
-// Dependencies
-// =============================================================
 
-var Sequelize = require("sequelize");
-var db = require("../config/connection.js");
+module.exports = function(db, DataTypes) {
 
-// Creates a "Users" model that matches up with DB
-var Users = db.define("users", {
-    username: Sequelize.STRING,
-    password: Sequelize.STRING,
-    name: Sequelize.STRING,
-    location: Sequelize.STRING,
-    favorites: Sequelize.STRING,
-    preferences: Sequelize.STRING,
-    has_preferences: Sequelize.BOOLEAN
-});
+    // Creates a "Users" model that matches up with DB
+    var Users = db.define("users", {
+        userId: DataTypes.STRING,
+        login: DataTypes.STRING,
+        location: DataTypes.STRING,
+        favorites: DataTypes.STRING,
+        preferences: DataTypes.STRING,
+        has_preferences: {
+            type: DataTypes.STRING,
+            defaultValue: false
+        }
+    });
 
-// Syncs with DB
-Users.sync();
+    return Users;
+}
 
-// Makes the Users Model available for other files (will also create a table)
-module.exports = Users;
+
