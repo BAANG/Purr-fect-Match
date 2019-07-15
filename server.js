@@ -5,7 +5,7 @@
 // Dependencies
 // =============================================================
 var express = require("express");
-var htmtRoutes = require("./routes/html-routes.js");
+var htmlRoutes = require("./routes/html-routes.js");
 var apiRoutes = require("./routes/api-routes.js");
 
 // Sets up the Express App
@@ -13,9 +13,13 @@ var apiRoutes = require("./routes/api-routes.js");
 var app = express();
 var PORT = process.env.PORT || 8000;
 
+// Require our models for database syncing
+var db = require("./models")
+
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 
 // Set Handlebars.
 var exphbs = require("express-handlebars");
@@ -28,11 +32,15 @@ app.use(express.static("public"));
 
 // Routes
 // =============================================================
-app.use(htmtRoutes);
-app.use(apiRoutes);
+require("./routes/api-routes.js")(app);
+app.use(htmlRoutes);
+// app.use(apiRoutes);
 
-// Starts the server to begin listening
+
+// Starts the server to begin listening and sync sequelize models
 // =============================================================
-app.listen(PORT, function() {
-  console.log("App listening on PORT " + PORT);
-});
+db.sequelize.sync({ force: true }).then(function () {
+  app.listen(PORT, function () {
+    console.log("App listening on PORT " + PORT);
+  });
+})

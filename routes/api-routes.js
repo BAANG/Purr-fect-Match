@@ -1,58 +1,85 @@
 // Dependencies
 // =============================================================
-var User = require("../models/users.js");
-var Favorite = require("../models/favorite.js");
-var express = require('express');
-var router = express.Router();
+
+var db = require("../models");
 
 // Routes
 // =============================================================
-// Route to add an animal from the favorite
-router.post("/favorites/:id", function (req, res) {
-    console.log(req.method, `Adding favorite for animal id ${req.params.id}`);
-    Favorite.create({
-        userId: 1, // TODO: Get the user from the auth
-        animalId: req.params.id
-    }).then(function (response) {
-        res.sendStatus(200)
-    }).catch(function (err) {
-        console.error(err.original.sqlMessage)
-        res.sendStatus(400)
+
+module.exports = function (app) {
+    app.get("/api/users", function (req, res) { //GET route for getting all of thbe users
+
+        db.Users.findAll({})
+            .then(function (result) {
+                res.json(result);
+            })
     });
-});
 
-// Route to delete an animal from the favorite
-router.delete("/favorites/:id", function (req, res) {
-    console.log(req.method, `Deleting favorite for animal id ${req.params.id}`);
-    Favorite.destroy({
-        where: {
+    app.get("/api/users/:userId", function (req, res) {
+
+        db.Users.findAll({
+            where: {
+                userId: req.params.userId
+            }
+        }).then(function (result) {
+            res.json(result)
+        })
+    });
+
+    app.post("/api/users/:userId", function (req, res) {
+
+        db.Users.create(req.body)
+            .then(function (result) {
+                res.json(result)
+            })
+    });
+
+
+    // =============================================================
+    app.post("/favorites/:id", function (req, res) {
+        console.log(req.method, `Adding favorite for animal id ${req.params.id}`);
+        db.Favorites.create({
             userId: 1, // TODO: Get the user from the auth
             animalId: req.params.id
-        }
-    }).then(function () {
-        res.sendStatus(200)
-    }).catch(function (err) {
-        console.error(err.original.sqlMessage)
-        res.sendStatus(400)
-    });;
-});
-
-// Route to get if the given animal id is a favorite
-router.get("/favorites/:id/isFavorite", function (req, res) {
-    console.log(req.method, `Getting favorite for animal id ${req.params.id}`);
-    Favorite.findOne({
-        where: {
-            userId: 1, // TODO: Get the user from the auth
-            animalId: req.params.id
-        }
-    }).then(function (response) {
-        res.json({
-            isFavorite: response != null
+        }).then(function (response) {
+            res.sendStatus(200)
+        }).catch(function (err) {
+            console.error(err.original.sqlMessage)
+            res.sendStatus(400)
         });
-    }).catch(function (err) {
-        console.error(err.original.sqlMessage)
-        res.sendStatus(400)
     });
-});
 
-module.exports = router;
+    app.delete("/favorites/:id", function (req, res) {
+        console.log(req.method, `Deleting favorite for animal id ${req.params.id}`);
+        db.Favorites.destroy({
+            where: {
+                userId: 1, // TODO: Get the user from the auth
+                animalId: req.params.id
+            }
+        }).then(function () {
+            res.sendStatus(200)
+        }).catch(function (err) {
+            console.error(err.original.sqlMessage)
+            res.sendStatus(400)
+        });;
+    });
+
+    app.get("/favorites/:id", function (req, res) {
+        console.log(req.method, `Getting favorite for animal id ${req.params.id}`);
+        db.Favorites.findOne({
+            where: {
+                userId: 1, // TODO: Get the user from the auth
+                animalId: req.params.id
+            }
+        }).then(function (response) {
+            res.json({
+                isFavorite: response != null
+            });
+        }).catch(function (err) {
+            console.error(err.original.sqlMessage)
+            res.sendStatus(400)
+        });
+    });
+}
+
+
