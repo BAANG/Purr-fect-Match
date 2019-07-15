@@ -27,7 +27,7 @@ router.get("/main", function (req, res) {
 router.get("/pets/:id", function (req, res) {
     console.log(req.method, "request completed.");
 
-    var petfinderData;
+    var petfinderData = getAnimalInfo(req.params.id)
     // TODO: Insert API request data per the profile to populate the handlebars object
     // Ideally, petID will be retrieved on click and that value was generated on the initial GET request from Petfinder.
     res.render("profile", petfinderData)

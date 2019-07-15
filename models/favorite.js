@@ -6,14 +6,8 @@ module.exports = function (sequelize, DataTypes) {
         UserId: DataTypes.STRING
         
     });
-
-    // Favorite.associate = function(models) {
-    //     Favorite.belongsTo(models.Users, {
-    //         foreignKey: {
-    //             allowNull: false
-    //         }
-    //     })
-    // }
-
+  
+    // Favorite.belongsTo(Users)
     return Favorite;
 };
+

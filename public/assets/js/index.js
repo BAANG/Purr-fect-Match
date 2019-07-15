@@ -104,10 +104,14 @@ $("#search").on("click", function (event) {
                     $('#card-section').append(container)
 
 
+                   
                     var modal = $("<div>").attr("id", "modal" + i).addClass("modal");
                     var modalContent = $("<div>").addClass("modal-content");
                     modal.append(modalContent)
                     cardContent.append(modal)
+
+                   
+                    
 
                     let isFavorite = false;
                     let favorite = $("<i>").addClass("material-icons").css({ "color": "red", "float": "right" }).text("favorite_border");
@@ -213,7 +217,6 @@ $("#search").on("click", function (event) {
     });
 });
 
-
 function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -229,3 +232,4 @@ function getCookie(cname) {
     }
     return "";
 }
+
