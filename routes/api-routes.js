@@ -39,10 +39,7 @@ module.exports = function (app) {
 
     // =============================================================
     app.post("/favorites/:id/:user", function (req, res) {
-        console.log(req.method, `Adding favorite for animal id ${req.params.id}`);
-        // console.log(req.params)
-        // console.log(req)
-        console.log('this is the req.body', req.body)
+        console.log(req.method, `Adding favorite for animal id ${req.params.id}`)
         var userId = req.body.UserId;
         var animalId = req.body.animalId;
 

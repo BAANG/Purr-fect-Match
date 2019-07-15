@@ -7,13 +7,5 @@ module.exports = function (sequelize, DataTypes) {
         
     });
 
-    // Favorite.associate = function(models) {
-    //     Favorite.belongsTo(models.Users, {
-    //         foreignKey: {
-    //             allowNull: false
-    //         }
-    //     })
-    // }
-
     return Favorite;
 };
