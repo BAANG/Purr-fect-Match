@@ -4,3 +4,4 @@ module.exports = function (sequelize, DataTypes) {
     });
     // Favorite.belongsTo(Users)
     return Favorite;
+};
