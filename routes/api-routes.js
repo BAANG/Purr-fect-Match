@@ -50,7 +50,7 @@ module.exports = function (app) {
 
     app.delete("/favorites/:id", function (req, res) {
         console.log(req.method, `Deleting favorite for animal id ${req.params.id}`);
-        app.Favorites.destroy({
+        db.Favorites.destroy({
             where: {
                 userId: 1, // TODO: Get the user from the auth
                 animalId: req.params.id
@@ -65,7 +65,7 @@ module.exports = function (app) {
 
     app.get("/favorites/:id", function (req, res) {
         console.log(req.method, `Getting favorite for animal id ${req.params.id}`);
-        app.Favorite.findOne({
+        db.Favorites.findOne({
             where: {
                 userId: 1, // TODO: Get the user from the auth
                 animalId: req.params.id

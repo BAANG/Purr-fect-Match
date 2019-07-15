@@ -34,7 +34,7 @@ app.use(express.static("public"));
 // =============================================================
 require("./routes/api-routes.js")(app);
 app.use(htmlRoutes);
-app.use(apiRoutes);
+// app.use(apiRoutes);
 
 
 // Starts the server to begin listening and sync sequelize models
