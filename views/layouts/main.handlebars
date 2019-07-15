@@ -11,9 +11,22 @@
     <link type="text/css" rel="stylesheet" href="/assets/css/materialize.css" media="screen,projection" />
     <link type="text/css" rel="stylesheet" href="/assets/css/style.css" />
 
+
     {{!-- Okta Sign in Widget CSS --}}
     <link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/css/okta-sign-in.min.css"
         type="text/css" rel="stylesheet" />
+
+    <!--JavaScript in the head for optimized loading-->
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/assets/js/materialize.js"></script>
+    <!-- Latest CDN production Javascript and CSS: 2.16.0 -->
+    <script src="/node_modules/@okta/okta-signin-widget/dist/js/okta-sign-in.js" type="text/javascript"></script>
+    <link href="/node_modules/@okta/okta-signin-widget/dist/css/okta-sign-in.min.css" type="text/css"
+        rel="stylesheet" />
+
+    <!-- Theme file: Customize or replace this file if you want to override our default styles -->
+
     <link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/css/okta-theme.css"
         type="text/css" rel="stylesheet" />
     <!--Let browser know website is optimized for mobile-->
@@ -26,18 +39,5 @@
 
     {{{ body }}}
 
-    <!--JavaScript at end of body for optimized loading-->
-    <script src="https://code.jquery.com/jquery-3.4.1.js"
-        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="/assets/js/materialize.js"></script>
-    <script src="../assets/js/index.js"></script>
-    {{!-- Okta Sign in Widget JS --}}
-    <script src="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.16.0/js/okta-sign-in.min.js"
-        type="text/javascript"></script>
-    <script src="/assets/js/login.js"></script>
-
-
-
 </body>
-
 </html>

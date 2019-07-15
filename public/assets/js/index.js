@@ -29,7 +29,6 @@ $(document).ready(function () {
 
                 $("#breeds").autocomplete({ data: breedsKeyValue });
             })
-
         })
     });
 });
@@ -64,7 +63,6 @@ $("#search").on("click", function (event) {
                 $('#card-section').append($("<h2>").html("<br>There was an error in your search!"))
             }
         }).then(function (response) {
-
             $("#card-section").empty();
 
             if (response.animals.length === 0) {
@@ -94,7 +92,7 @@ $("#search").on("click", function (event) {
                         .css("text-shadow", "3px 3px 5px #000000")
                         .text(animal.name);
                     cardImage.append(cardTitle)
-
+                    
                     var cardContent = $("<div>").addClass("card-content center")
 
                     var button = $("<button>").attr("data-target", "modal" + i).addClass("btn modal-trigger waves-effect").text("Read more");
@@ -115,7 +113,7 @@ $("#search").on("click", function (event) {
                     modalContent.append(favorite);
 
                     $.ajax({
-                        url: `/favorites/${animal.id}`,
+                        url: `/favorites/${animal.id}/isFavorite`,
                         method: "GET"
                     }).done(function (data) {
                         isFavorite = data.isFavorite
