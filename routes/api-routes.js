@@ -2,6 +2,8 @@
 // =============================================================
 
 var db = require("../models");
+var axios = require('axios');
+var petfinderAuth = require("../controllers/petfinder-auth");
 
 // Routes
 // =============================================================
@@ -36,12 +38,19 @@ module.exports = function (app) {
 
 
     // =============================================================
-    app.post("/favorites/:id", function (req, res) {
+    app.post("/favorites/:id/:user", function (req, res) {
         console.log(req.method, `Adding favorite for animal id ${req.params.id}`);
+        // console.log(req.params)
+        // console.log(req)
+        console.log('this is the req.body', req.body)
+        var userId = req.body.UserId;
+        var animalId = req.body.animalId;
+
         db.Favorites.create({
-            userId: 1, // TODO: Get the user from the auth
-            animalId: req.params.id
-        }).then(function (response) {
+            UserId : userId,
+            animalId : animalId
+        })
+        .then(function (response) {
             res.sendStatus(200)
         }).catch(function (err) {
             console.error(err.original.sqlMessage)
@@ -49,11 +58,11 @@ module.exports = function (app) {
         });
     });
 
-    app.delete("/favorites/:id", function (req, res) {
+    app.delete("/favorites/:id/:user", function (req, res) {
         console.log(req.method, `Deleting favorite for animal id ${req.params.id}`);
         db.Favorites.destroy({
             where: {
-                userId: 1, // TODO: Get the user from the auth
+                UserId: req.params.user,
                 animalId: req.params.id
             }
         }).then(function () {
@@ -64,11 +73,11 @@ module.exports = function (app) {
         });;
     });
 
-    app.get("/favorites/:id", function (req, res) {
+    app.get("/favorites/:id/:user", function (req, res) {
         console.log(req.method, `Getting favorite for animal id ${req.params.id}`);
         db.Favorites.findOne({
             where: {
-                userId: 1, // TODO: Get the user from the auth
+                userId: req.params.user, // TODO: Get the user from the auth
                 animalId: req.params.id
             }
         }).then(function (response) {
@@ -80,6 +89,30 @@ module.exports = function (app) {
             res.sendStatus(400)
         });
     });
+
+    app.get("/favorites", function (req, res) {
+        console.log(req.method, "request completed.");
+        db.Favorites.findAll({
+            where: {
+                userId: '00uw0cht1ElgY4oME356', // TODO: Get the user from the auth
+            }
+        }).then(function (favorites) {
+            var animalInfoPromises = favorites.map(favorite => getAnimalInfo(favorite.animalId));
+            Promise.all(animalInfoPromises).then(function (animalInfo) {
+                console.log(animalInfo)
+                res.render("favorites", { animals: animalInfo });
+            });
+        });
+    })
 }
 
+function getAnimalInfo(id) {
+    return axios({
+        url: `https://api.petfinder.com/v2/animals/${id}`,
+        method: "GET",
+        headers: petfinderAuth
+    }).then(function (response) {
+        return response.data.animal
+    });
+}
 

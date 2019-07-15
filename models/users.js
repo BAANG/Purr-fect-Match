@@ -1,9 +1,10 @@
 
+
 module.exports = function(sequelize, DataTypes) {
 
     // Creates a "Users" model that matches up with DB
     var Users = sequelize.define("Users", {
-        userId: DataTypes.STRING,
+        UserId: DataTypes.STRING,
         login: DataTypes.STRING,
         location: DataTypes.STRING,
         favorites: DataTypes.STRING,
@@ -13,6 +14,14 @@ module.exports = function(sequelize, DataTypes) {
             defaultValue: false
         }
     });
+
+    // Users.associate = function(models) {
+    //     Users.hasMany(models.Favorites, {
+    //         foreignKey: {
+    //             allowNull: false
+    //         }
+    //     })
+    // }
 
     return Users;
 }

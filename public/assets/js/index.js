@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
     $(".parallax").parallax();
     $("select").formSelect();
@@ -59,7 +60,7 @@ $("#search").on("click", function (event) {
                 xhr.setRequestHeader("Authorization", "Bearer " + token);
             },
 
-            error: function() {
+            error: function () {
                 $('#card-section').append($("<h2>").html("<br>There was an error in your search!"))
             }
         }).then(function (response) {
@@ -92,7 +93,7 @@ $("#search").on("click", function (event) {
                         .css("text-shadow", "3px 3px 5px #000000")
                         .text(animal.name);
                     cardImage.append(cardTitle)
-                    
+
                     var cardContent = $("<div>").addClass("card-content center")
 
                     var button = $("<button>").attr("data-target", "modal" + i).addClass("btn modal-trigger waves-effect").text("Read more");
@@ -127,9 +128,11 @@ $("#search").on("click", function (event) {
                     });
 
                     favorite.click(function (event) {
+                        var currentUser = getCookie('currentUser')
+                        console.log(currentUser, "is the userId")
                         if (isFavorite) {
                             $.ajax({
-                                url: `/favorites/${animal.id}`,
+                                url: `/favorites/${animal.id}/` + currentUser,
                                 method: "DELETE"
                             }).done(function () {
                                 $(event.target).addClass("material-icons").css("color", "red").text("favorite_border");
@@ -138,9 +141,26 @@ $("#search").on("click", function (event) {
                                 M.toast({ html: "Unable to remove from your favorites", displayLength: 2000, classes: "red" });
                             })
                         } else {
-                            $.ajax({
-                                url: `/favorites/${animal.id}`,
-                                method: "POST"
+                            // $.ajax({
+                            //     url: `/favorites/${animal.id}/` + currentUser,
+                            //     data: {
+                            //         UserId: currentUser,
+                            //         animalId: animal.id
+                            //     },
+                            //     method: "POST"
+                            // }).done(function () {
+                            //     $(event.target).addClass("material-icons").css("color", "red").text("favorite");
+                            //     M.toast({ html: "Recorded in your favorites!", displayLength: 2000, classes: "teal" });
+                            //     isFavorite = true;
+                            // }).fail(function () {
+                            //     M.toast({ html: "Unable to record in your favorites", displayLength: 2000, classes: "red" });
+                            // })
+                            var data = {
+                                UserId: currentUser,
+                                animalId: animal.id
+                            }
+                            $.post('/favorites/' + animal.id + '/' + currentUser, data, function (result) {
+                                console.log(result)
                             }).done(function () {
                                 $(event.target).addClass("material-icons").css("color", "red").text("favorite");
                                 M.toast({ html: "Recorded in your favorites!", displayLength: 2000, classes: "teal" });
@@ -196,4 +216,20 @@ $("#search").on("click", function (event) {
         })
     });
 });
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
 

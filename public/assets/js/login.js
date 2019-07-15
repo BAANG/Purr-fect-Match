@@ -48,8 +48,8 @@ if (oktaSignIn.token.hasTokensInUrl()) {
             console.log('Welcome back, ' + res.login);
             console.log(res.userId, "is the userId")
 
-            var newUser = { // Creates user object to be sent to database
-                userId: res.userId,
+            newUser = { // Creates user object to be sent to database
+                UserId: res.userId,
                 login: res.login,
                 location: null,
                 favorites: null,
@@ -60,6 +60,8 @@ if (oktaSignIn.token.hasTokensInUrl()) {
                 // ie. Check for user with unique userId and only create user if it doesn't exist. 
             $.post("/api/users/" + res.userId, newUser, function(data) {
                 console.log(data)
+                currentUser = res.userId;
+                document.cookie = "currentUser=" + currentUser;
             })
 
             if (window.location.pathname === '/') {
@@ -81,4 +83,5 @@ if (oktaSignIn.token.hasTokensInUrl()) {
         );
     });
 }
+
 
