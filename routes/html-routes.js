@@ -5,6 +5,7 @@ var router = express.Router();
 var Favorite = require("../models/favorite.js");
 var axios = require("axios")
 var petfinderAuth = require("../controllers/petfinder-auth")
+var db = require('../models')
 
 // Routes
 // =============================================================
@@ -36,7 +37,7 @@ router.get("/favorites", function (req, res) {
     console.log(req.method, "request completed.");
     Favorite.findAll({
         where: {
-            userId: 1, // TODO: Get the user from the auth
+            userId: '00uw0cht1ElgY4oME356', // TODO: Get the user from the auth
         }
     }).then(function (favorites) {
         var animalInfoPromises = favorites.map(favorite => getAnimalInfo(favorite.animalId));
@@ -63,3 +64,19 @@ function getAnimalInfo(id) {
 }
 
 module.exports = router;
+
+// function getCookie(cname) {
+//     var name = cname + "=";
+//     var decodedCookie = decodeURIComponent(document.cookie);
+//     var ca = decodedCookie.split(';');
+//     for(var i = 0; i <ca.length; i++) {
+//       var c = ca[i];
+//       while (c.charAt(0) == ' ') {
+//         c = c.substring(1);
+//       }
+//       if (c.indexOf(name) == 0) {
+//         return c.substring(name.length, c.length);
+//       }
+//     }
+//     return "";
+//   }
