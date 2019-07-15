@@ -2,6 +2,8 @@
 // =============================================================
 
 var db = require("../models");
+var axios = require('axios');
+var petfinderAuth = require("../controllers/petfinder-auth");
 
 // Routes
 // =============================================================
@@ -87,6 +89,30 @@ module.exports = function (app) {
             res.sendStatus(400)
         });
     });
+
+    app.get("/favorites", function (req, res) {
+        console.log(req.method, "request completed.");
+        db.Favorites.findAll({
+            where: {
+                userId: '00uw0cht1ElgY4oME356', // TODO: Get the user from the auth
+            }
+        }).then(function (favorites) {
+            var animalInfoPromises = favorites.map(favorite => getAnimalInfo(favorite.animalId));
+            Promise.all(animalInfoPromises).then(function (animalInfo) {
+                console.log(animalInfo)
+                res.render("favorites", { animals: animalInfo });
+            });
+        });
+    })
 }
 
+function getAnimalInfo(id) {
+    return axios({
+        url: `https://api.petfinder.com/v2/animals/${id}`,
+        method: "GET",
+        headers: petfinderAuth
+    }).then(function (response) {
+        return response.data.animal
+    });
+}
 
