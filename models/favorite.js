@@ -15,3 +15,6 @@ Favorite.sync();
 
 // Makes the Favorite Model available for other files (will also create a table)
 module.exports = Favorite;
+
+
+
