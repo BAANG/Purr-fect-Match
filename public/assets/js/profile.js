@@ -27,7 +27,21 @@ $(document).ready(function () {
             $("#pet-coat").text(petIdData.caot);
             $("#pet-size").text(petIdData.size);
             $("#pet-description").text(petIdData.description);
-
+            
+            var resp = petIdData.contact.address;
+            var place = resp.address1 + ", ";
+            var zoomLevel = 16;
+            if (resp.address1 === null) {
+                zoomLevel = 12;
+                place = "";
+            }
+            else if (resp.address1.startsWith("P.O.")) {
+                zoomLevel = 12;
+                place = "";
+            }
+            var address = place + resp.city + ", " + resp.state + " " + resp.postcode;
+            console.log(address)
+            $(".maps").append('<iframe class="gmap" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=' + address + '&key=AIzaSyCH2xLVmpRkxfq20pbYsRE1Vp96Fbf-_s4&zoom=' + zoomLevel + '" allowfullscreen></iframe>')
         })
     })
 })
