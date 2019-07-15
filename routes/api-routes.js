@@ -36,12 +36,19 @@ module.exports = function (app) {
 
 
     // =============================================================
-    app.post("/favorites/:id", function (req, res) {
+    app.post("/favorites/:id/:user", function (req, res) {
         console.log(req.method, `Adding favorite for animal id ${req.params.id}`);
+        // console.log(req.params)
+        // console.log(req)
+        console.log('this is the req.body', req.body)
+        var userId = req.body.UserId;
+        var animalId = req.body.animalId;
+
         db.Favorites.create({
-            userId: 1, // TODO: Get the user from the auth
-            animalId: req.params.id
-        }).then(function (response) {
+            UserId : userId,
+            animalId : animalId
+        })
+        .then(function (response) {
             res.sendStatus(200)
         }).catch(function (err) {
             console.error(err.original.sqlMessage)
@@ -49,11 +56,11 @@ module.exports = function (app) {
         });
     });
 
-    app.delete("/favorites/:id", function (req, res) {
+    app.delete("/favorites/:id/:user", function (req, res) {
         console.log(req.method, `Deleting favorite for animal id ${req.params.id}`);
         db.Favorites.destroy({
             where: {
-                userId: 1, // TODO: Get the user from the auth
+                UserId: req.params.user,
                 animalId: req.params.id
             }
         }).then(function () {
@@ -64,11 +71,11 @@ module.exports = function (app) {
         });;
     });
 
-    app.get("/favorites/:id", function (req, res) {
+    app.get("/favorites/:id/:user", function (req, res) {
         console.log(req.method, `Getting favorite for animal id ${req.params.id}`);
         db.Favorites.findOne({
             where: {
-                userId: 1, // TODO: Get the user from the auth
+                userId: req.params.user, // TODO: Get the user from the auth
                 animalId: req.params.id
             }
         }).then(function (response) {
