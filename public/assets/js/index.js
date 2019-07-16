@@ -32,6 +32,15 @@ $(document).ready(function () {
             })
         })
     });
+
+    // Script for generating custom favorite link
+    var currentUser = getCookie('currentUser')
+    var favoriteButton = $('#nav-mobile')
+    var anchor = $('<a>')
+    anchor.attr('href' ,'/myfavorites/' + currentUser)
+    anchor.addClass('brand-logo right')
+    anchor.html('<i class="material-icons">favorite</i>')
+    favoriteButton.append(anchor);
 });
 
 $("#search").on("click", function (event) {
