@@ -19,12 +19,19 @@ $(document).ready(function () {
             }
         }).then(function (response) {
             console.log(response);
+            
             var petIdData = response.animal;
+            let photoUri = petIdData.photos.length > 0 ? petIdData.photos[0].medium : "assets/img/no-image-available.svg";    
+                    
             $("#pet-name").text(petIdData.name);
-            $(".card-image").append(petIdData.photos[0].medium);
+            $(".card-image").append($("<img>").attr({
+                "src": photoUri,
+                "alt": "Animal",
+            }).css("max-height", "500px"));
+               
             $("#pet-age").text(petIdData.age);
             $("#pet-breed").text(petIdData.breeds.primary);
-            $("#pet-coat").text(petIdData.caot);
+            $("#pet-coat").text(petIdData.coat);
             $("#pet-size").text(petIdData.size);
             $("#pet-description").text(petIdData.description);
             
@@ -48,13 +55,7 @@ $(document).ready(function () {
 
 
 
-// var cardImage = $("<div>").addClass("card-image");
-//                     var image = $("<img>").attr({
-//                         "src": petIdData.photos[0].medium,
-//                         "alt": "Animal",
-//                     }).css("height", "230px").css("object-fit", "cover")
-//                     cardImage.append(image)
-//                     card.append(cardImage)
+
 
 
 
