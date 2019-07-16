@@ -34,6 +34,7 @@ $(document).ready(function () {
     });
 
     // Script for generating custom favorite link
+    // console.log('This is the okta-token-storage:' ,localStorage.getItem('okta-token-storage'))
     var currentUser = getCookie('currentUser')
     var favoriteButton = $('.favorite-button-index')
     var anchor = $('<a>')
