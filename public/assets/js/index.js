@@ -35,7 +35,7 @@ $(document).ready(function () {
 
     // Script for generating custom favorite link
     var currentUser = getCookie('currentUser')
-    var favoriteButton = $('#nav-mobile')
+    var favoriteButton = $('.favorite-button-index')
     var anchor = $('<a>')
     anchor.attr('href' ,'/myfavorites/' + currentUser)
     anchor.addClass('brand-logo right')
