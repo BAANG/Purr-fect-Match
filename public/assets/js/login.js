@@ -57,15 +57,16 @@ if (oktaSignIn.token.hasTokensInUrl()) {
                 has_preferences: false
             }
     
-
+            currentUser = res.userId;
+            document.cookie = "currentUser=" + currentUser;
+            
             $.get('/api/users/' + res.userId, function (data) {
                 if (data.length) {
                     return;
                 } else {
                     $.post("/api/users/" + res.userId, newUser, function (data) {
-                        currentUser = res.userId;
-                        document.cookie = "currentUser=" + currentUser;
-                    })
+                        
+                    });
                 }
             })
 
