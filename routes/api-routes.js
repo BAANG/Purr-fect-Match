@@ -44,15 +44,15 @@ module.exports = function (app) {
         var animalId = req.body.animalId;
 
         db.Favorites.create({
-            UserId : userId,
-            animalId : animalId
+            UserId: userId,
+            animalId: animalId
         })
-        .then(function (response) {
-            res.sendStatus(200)
-        }).catch(function (err) {
-            console.error(err.original.sqlMessage)
-            res.sendStatus(400)
-        });
+            .then(function (response) {
+                res.sendStatus(200)
+            }).catch(function (err) {
+                console.error(err.original.sqlMessage)
+                res.sendStatus(400)
+            });
     });
 
     app.delete("/favorites/:id/:user", function (req, res) {
@@ -87,11 +87,12 @@ module.exports = function (app) {
         });
     });
 
-    app.get("/favorites", function (req, res) {
+    app.get("/myfavorites/:id", function (req, res) {
         console.log(req.method, "request completed.");
+
         db.Favorites.findAll({
             where: {
-                userId: '00uw0cht1ElgY4oME356', // TODO: Get the user from the auth
+                UserId: req.params.id, // TODO: Get the user from the auth
             }
         }).then(function (favorites) {
             var animalInfoPromises = favorites.map(favorite => getAnimalInfo(favorite.animalId));
