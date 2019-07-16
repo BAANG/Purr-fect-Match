@@ -45,6 +45,7 @@ if (oktaSignIn.token.hasTokensInUrl()) {
     oktaSignIn.session.get(function (res) {
         // Session exists, show logged in state.
         if (res.status === 'ACTIVE') {
+            console.log(res.userId)
             console.log('Welcome back, ' + res.login);
 
             newUser = { // Creates user object to be sent to database
