@@ -55,8 +55,7 @@ if (oktaSignIn.token.hasTokensInUrl()) {
                 preferences: null,
                 has_preferences: false
             }
-            // TODO: Create conditional statement to prevent duplicate users from being created.
-            // ie. Check for user with unique userId and only create user if it doesn't exist. 
+    
 
             $.get('/api/users/' + res.userId, function (data) {
                 if (data.length) {
