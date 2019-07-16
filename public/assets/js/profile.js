@@ -21,10 +21,7 @@ $(document).ready(function () {
             console.log(response);
             
             var petIdData = response.animal;
-            let photoUri = petIdData.photos.length > 0 ? petIdData.photos[0].medium : "assets/img/no-image-available.svg";
-           
-
-                   
+            let photoUri = petIdData.photos.length > 0 ? petIdData.photos[0].medium : "assets/img/no-image-available.svg";    
                     
             $("#pet-name").text(petIdData.name);
             $(".card-image").append($("<img>").attr({
