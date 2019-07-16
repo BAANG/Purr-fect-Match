@@ -207,10 +207,11 @@ $("#search").on("click", function (event) {
 
                     var modalFooter = $("<div>").addClass("modal-footer");
                     modal.append(modalFooter)
-                    var findMe = $("<a>").attr("href", "/pets/" + animal.id).addClass("modal-close waves-effect waves-green btn-flat").text("Where to find me?")
+                    var findMe = $("<a>").attr("href", "/pets/" + animal.id).attr("target", "_blank").addClass("modal-close waves-effect waves-green btn-flat").text("Where to find me?")
                     modalFooter.append(findMe)
 
                     $(".modal").modal();
+                    $("#breeds").val('');
                 };
             };
         })
