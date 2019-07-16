@@ -19,22 +19,39 @@ $(document).ready(function () {
             }
         }).then(function (response) {
             console.log(response);
-            
+
             var petIdData = response.animal;
-            let photoUri = petIdData.photos.length > 0 ? petIdData.photos[0].medium : "assets/img/no-image-available.svg";    
-                    
-            $("#pet-name").text(petIdData.name);
+            let photoUri = petIdData.photos.length > 0 ? petIdData.photos[0].large : "assets/img/no-image-available.svg";
+
+            if (!(petIdData.name == null)) {
+                $("#pet-name").append($("<h5>").text("Name: " + petIdData.name));
+            };
+
             $(".card-image").append($("<img>").attr({
                 "src": photoUri,
                 "alt": "Animal",
             }).css("max-height", "500px"));
-               
-            $("#pet-age").text(petIdData.age);
-            $("#pet-breed").text(petIdData.breeds.primary);
-            $("#pet-coat").text(petIdData.coat);
-            $("#pet-size").text(petIdData.size);
-            $("#pet-description").text(petIdData.description);
-            
+
+            if (!(petIdData.age == null)) {
+                $("#pet-age").append($("<h5>").text("Age: " + petIdData.age));
+            };
+
+            if (!(petIdData.breeds.primary == null)) {
+                $("#pet-breed").append($("<h5>").text("Breed: " + petIdData.breeds.primary));
+            };
+
+            if (!(petIdData.coat == null)) {
+                $("#pet-coat").append($("<h5>").text("Coat: " + petIdData.coat));
+            };
+
+            if (!(petIdData.size == null)) {
+                $("#pet-size").append($("<h5>").text("Size: " + petIdData.size));
+            };
+
+            if (!(petIdData.description == null)) {
+                $("#pet-description").append($("<h5>").text("Description: " + petIdData.description));
+            };
+
             var resp = petIdData.contact.address;
             var place = resp.address1 + ", ";
             var zoomLevel = 16;
@@ -49,6 +66,28 @@ $(document).ready(function () {
             var address = place + resp.city + ", " + resp.state + " " + resp.postcode;
             console.log(address)
             $(".maps").append('<iframe class="gmap" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=' + address + '&key=AIzaSyCH2xLVmpRkxfq20pbYsRE1Vp96Fbf-_s4&zoom=' + zoomLevel + '" allowfullscreen></iframe>')
+
+            if (resp === null) {
+                $(".org-info").append($("<br>"))
+            }
+            else {
+                $(".org-info").append($("<h5>").text("Address: " + address));
+            };
+            if (!(petIdData.contact.email == null)) {
+                $(".org-info").append($("<h5>").text("Contact Email: " + petIdData.contact.email));
+            };
+            if (!(petIdData.contact.phone == null)) {
+                $(".org-info").append($("<h5>").text("Contact Phone: " + petIdData.contact.phone));
+            };
+            if (!(petIdData._links.organization.href == null)) {
+                var orgLink = $("<a>").attr("href", petIdData._links.organization.href).attr("target", "_blank").text("Organization Link");
+
+                $(".org-info").append(orgLink);
+            };
+
+            if (!(petIdData.organization_id == null)) {
+                $(".org-info").append($("<h5>").text("Organization ID: " + organization_id));
+            }
         })
     })
 })
@@ -56,55 +95,3 @@ $(document).ready(function () {
 
 
 
-
-
-
-// $(document).on('click', ".modal-close", function () {
-//     event.preventDefault();
-//     var petDiv = $("<div>");
-//     var petName = $('#pet-name').val().trim();
-//     var userNameDiv = $("<p>").text(userName);
-//     var userReview = $('#user-review').val().trim();
-//     var userReviewDiv = $('<p>').text(userReview);
-
-//     reviewDiv.append(userNameDiv, userReviewDiv);
-
-//     if (userName.length > 0 && userReview.length > 0) {
-//         database.ref($(this).attr("data-id")).push({
-//             name: userName,
-//             review: userReview
-//         })
-//     }
-// });
-
-// $(document).on('click', ".modal-close", function () {
-//     event.preventDefault();
-//     var id = $(this).attr('data-id');
-//     $("#" + id).removeClass('hide');
-
-
-
-//     $(this).addClass('hide');
-// });
-
-
-
-
-
-
-
-// $(document).ready(function() {
-
-//     $('a[data-toggle=modal], button[data-toggle=modal]').click(function () {
-  
-//       var data_id = '';
-  
-//       if (typeof $(this).data('id') !== 'undefined') {
-  
-//         data_id = $(this).data('id');
-//       }
-  
-//       $('#animalId').val(data_id);
-//       console.log(data_Id)
-//     })
-//   });
