@@ -6,8 +6,7 @@ module.exports = function (sequelize, DataTypes) {
         UserId: DataTypes.STRING
         
     });
-  
-    // Favorite.belongsTo(Users)
+
     return Favorite;
 };
 

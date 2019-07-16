@@ -8,7 +8,7 @@ var oktaSignIn = new OktaSignIn({
         responseType: ['token', 'id_token'],
         display: 'page',
         idps: [
-            {type: 'GOOGLE', id: '0oaw0jvevnYiVK0K5356'}
+            { type: 'GOOGLE', id: '0oaw0jvevnYiVK0K5356' }
         ]
     }
 });
@@ -46,7 +46,6 @@ if (oktaSignIn.token.hasTokensInUrl()) {
         // Session exists, show logged in state.
         if (res.status === 'ACTIVE') {
             console.log('Welcome back, ' + res.login);
-            console.log(res.userId, "is the userId")
 
             newUser = { // Creates user object to be sent to database
                 UserId: res.userId,
@@ -57,11 +56,17 @@ if (oktaSignIn.token.hasTokensInUrl()) {
                 has_preferences: false
             }
             // TODO: Create conditional statement to prevent duplicate users from being created.
-                // ie. Check for user with unique userId and only create user if it doesn't exist. 
-            $.post("/api/users/" + res.userId, newUser, function(data) {
-                console.log(data)
-                currentUser = res.userId;
-                document.cookie = "currentUser=" + currentUser;
+            // ie. Check for user with unique userId and only create user if it doesn't exist. 
+
+            $.get('/api/users/' + res.userId, function (data) {
+                if (data.length) {
+                    return;
+                } else {
+                    $.post("/api/users/" + res.userId, newUser, function (data) {
+                        currentUser = res.userId;
+                        document.cookie = "currentUser=" + currentUser;
+                    })
+                }
             })
 
             if (window.location.pathname === '/') {

@@ -141,20 +141,6 @@ $("#search").on("click", function (event) {
                                 M.toast({ html: "Unable to remove from your favorites", displayLength: 2000, classes: "red" });
                             })
                         } else {
-                            // $.ajax({
-                            //     url: `/favorites/${animal.id}/` + currentUser,
-                            //     data: {
-                            //         UserId: currentUser,
-                            //         animalId: animal.id
-                            //     },
-                            //     method: "POST"
-                            // }).done(function () {
-                            //     $(event.target).addClass("material-icons").css("color", "red").text("favorite");
-                            //     M.toast({ html: "Recorded in your favorites!", displayLength: 2000, classes: "teal" });
-                            //     isFavorite = true;
-                            // }).fail(function () {
-                            //     M.toast({ html: "Unable to record in your favorites", displayLength: 2000, classes: "red" });
-                            // })
                             var data = {
                                 UserId: currentUser,
                                 animalId: animal.id
