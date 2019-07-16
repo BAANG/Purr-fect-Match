@@ -82,9 +82,8 @@ $(document).ready(function () {
             if (!(petIdData.contact.phone == null)) {
                 $(".org-info").append($("<h5>").text("Contact Phone: " + petIdData.contact.phone));
             };
-            if (!(petIdData._links.organization.href == null)) {
-                var orgLink = $("<a>").attr("href", petIdData._links.organization.href).attr("target", "_blank").text("Organization Link");
-
+            if (!(petIdData.url == null)) {
+                var orgLink = $("<a>").attr("href", petIdData.url).attr("target", "_blank").text("Organization Link");
                 $(".org-info").append(orgLink);
             };
 
