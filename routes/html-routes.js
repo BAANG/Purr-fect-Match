@@ -30,12 +30,6 @@ router.get("/pets/:id", function (req, res) {
     res.render("profile", petfinderData)
 })
 
-
-router.get("/test", function (req, res) {
-    console.log(req.method, "request completed.");
-    res.send("Hello World")
-})
-
 function getAnimalInfo(id) {
     return axios({
         url: `https://api.petfinder.com/v2/animals/${id}`,
