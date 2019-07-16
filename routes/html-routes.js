@@ -24,7 +24,9 @@ router.get("/main", function (req, res) {
 router.get("/pets/:id", function (req, res) {
     console.log(req.method, "request completed.");
 
-    var petfinderData;
+
+    var petfinderData = getAnimalInfo(req.params.id)
+
     res.render("profile", petfinderData)
 })
 

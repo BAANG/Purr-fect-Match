@@ -104,10 +104,14 @@ $("#search").on("click", function (event) {
                     $('#card-section').append(container)
 
 
+                   
                     var modal = $("<div>").attr("id", "modal" + i).addClass("modal");
                     var modalContent = $("<div>").addClass("modal-content");
                     modal.append(modalContent)
                     cardContent.append(modal)
+
+                   
+                    
 
                     let isFavorite = false;
                     let favorite = $("<i>").addClass("material-icons").css({ "color": "red", "float": "right" }).text("favorite_border");
@@ -189,16 +193,16 @@ $("#search").on("click", function (event) {
 
                     var modalFooter = $("<div>").addClass("modal-footer");
                     modal.append(modalFooter)
-                    var findMe = $("<a>").attr("href", "/pets/" + animal.id).addClass("modal-close waves-effect waves-green btn-flat").text("Where to find me?")
+                    var findMe = $("<a>").attr("href", "/pets/" + animal.id).attr("target", "_blank").addClass("modal-close waves-effect waves-green btn-flat").text("Where to find me?")
                     modalFooter.append(findMe)
 
                     $(".modal").modal();
+                    $("#breeds").val('');
                 };
             };
         })
     });
 });
-
 
 function getCookie(cname) {
     var name = cname + "=";
@@ -215,3 +219,4 @@ function getCookie(cname) {
     }
     return "";
 }
+
