@@ -27,7 +27,7 @@ The front-end is built with the `Materialize` CSS framework and utilizes `Handle
 # How It Works
 
 <h2 align="center">
-<img src="public/assets/img/readme-images/how-it-works-icons.PNG" alt="How It Works" width='100%' />
+<img src="public/assets/img/readme-images/how-it-works-icons.png" alt="How It Works" width='100%' />
 </h2>
 
 <br>
@@ -60,7 +60,7 @@ The front-end is built with the `Materialize` CSS framework and utilizes `Handle
 
 # Results - PetFinder API
 <h2 align="center">
-<img src="public/assets/img/readme-images/screen1.PNG" alt="Screenshot of Application" width='50%' />
+<img src="public/assets/img/readme-images/screen1.png" alt="Screenshot of Application" width='50%' />
 </h2>
 
 * Search for pet inputting filters:
@@ -81,7 +81,7 @@ The front-end is built with the `Materialize` CSS framework and utilizes `Handle
 
 # Favorites Model - Handlebars
 <h2 align="center">
-<img src="public/assets/img/readme-images/screen2.PNG" alt="Screenshot of Application" width='50%' />
+<img src="public/assets/img/readme-images/screen2.png" alt="Screenshot of Application" width='50%' />
 </h2>
 
 ```
