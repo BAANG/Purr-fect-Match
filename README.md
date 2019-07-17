@@ -1,14 +1,16 @@
 # Purr-fect-Match
 
 <h1 align="center">
-  <a href="https://purr-fect-match.herokuapp.com/"><img src="public\assets\img\logos\Purr-fect Match-darker.PNG" alt="Logo" width="65%"></a>
+  <img src="public/assets/img/logos/logo.PNG" alt="Logo" width="65%"></a>
 </h1>
+
+
 
 <h2 align="center">A Full-stack Web Application for finding pets to foster/adopt
 
 [Link to Deployed Application](https://purr-fect-match.herokuapp.com/)
 
-</h3>
+</h2>
 
 
 
@@ -23,9 +25,11 @@ The front-end is built with the `Materialize` CSS framework and utilizes `Handle
 <br><br>
 
 # How It Works
-<h1 align="center">
-  <img src="public/assets/img/readme-images/how-it-works-icons.PNG" alt="Logo">
-</h1>
+
+<h2 align="center">
+<img src="public/assets/img/readme-images/how-it-works-icons.PNG" alt="How It Works" width='100%' />
+</h2>
+
 <br>
 
 # Features
@@ -124,16 +128,18 @@ Favorites.findAll();
 ######
 | Technology | Description |
 | --------------- | --------- |
-| [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) | Front-end Language |
-| [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) | Front-end Styling |
-| [Materialize](https://materializecss.com/) | CSS Framework for styling Front-end |
-| [JavaScript](https://www.javascript.com/) | test |
-| [jQuery](https://jquery.com/) | JS Library |
+| [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) | Structure of Web Page |
+| [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) | Styling of HTML |
+| [Materialize](https://materializecss.com/) | CSS Framework for styling HTML |
+| [JavaScript](https://www.javascript.com/) | Powers the dynamic behavior of web app |
+| [jQuery](https://jquery.com/) | JavaScript library |
 | [Handlebars](https://handlebarsjs.com/) | HTML templating engine |
 ######
 
+## Node.js Technologies Used
+
 ######
-| Node.js | Description |
+| Node.js Technology | Description |
 | --------------- | --------- |
 | [AJAX](https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX) | Handles API requests |
 | [Sequelize](http://docs.sequelizejs.com/) | Open-source ORM |
@@ -142,12 +148,14 @@ Favorites.findAll();
 | [JawsDB](https://www.jawsdb.com/docs/) | Heroku Cloud Database |
 ######
 
+## APIs Used
+
 ######
 | APIs | Description |
 | --------------- | --------- |
-| [Okta Authentification API](https://developer.okta.com/docs/reference/api/authn/) | Provides operations to authenticate users and build end-to-end login experience |
-| [Petfinder API](https://www.petfinder.com/developers/v2/docs/#get-animal-types) | Provides access to data for Petfinder's hundreds of thousands of adoptable pets and the organizations that care for them |
-| [Google Maps API](https://developers.google.com/maps/documentation/javascript/tutorial) | Used to place an interactive map on site app with an HTTP request |
+| [Okta Authentication](https://developer.okta.com/docs/reference/api/authn/) | Provides operations to authenticate users and build end-to-end login experience |
+| [Petfinder](https://www.petfinder.com/developers/v2/docs/#get-animal-types) | Provides access to data for Petfinder's hundreds of thousands of adoptable pets and the organizations that care for them |
+| [Google Maps](https://developers.google.com/maps/documentation/javascript/tutorial) | Used to place an interactive map on site app with an HTTP request |
 ######
 
 
