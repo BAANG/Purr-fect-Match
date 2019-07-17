@@ -4,11 +4,13 @@
   <a href="https://purr-fect-match.herokuapp.com/"><img src="public\assets\img\logos\Purr-fect Match-darker.PNG" alt="Logo" width="65%"></a>
 </h1>
 
-<h3>A Full-stack Web Application for finding pets to foster/adopt</h3>
+<h2 align="center">A Full-stack Web Application for finding pets to foster/adopt
 
 [Link to Deployed Application](https://purr-fect-match.herokuapp.com/)
 
-<br>
+</h3>
+
+
 
 # Description
 `Purr-fect Match` is a pet adoption service. We strive to help you find the an animal in need of a family for you to find information, find contact info and eventually adopt.
@@ -19,6 +21,12 @@ This is a full-stack web-based application built upon the `Node.js` environment,
 
 The front-end is built with the `Materialize` CSS framework and utilizes `Handlebars` for templating elements of our application for continuous reuse, reducing the amount of hardcoding needed for all of the different pages and views within the application flow.
 <br><br>
+
+# How It Works
+<h1 align="center">
+  <img src="./public/assets/img/readme-images/how-it-works-icons.PNG" alt="Logo">
+</h1>
+<br>
 
 # Features
 * User sign in via Google/Okta
@@ -34,16 +42,11 @@ The front-end is built with the `Materialize` CSS framework and utilizes `Handle
 * Google Maps Embed integrated with directions to organization location
 <br><br>
 
-# How It Works
-<h1 align="center">
-  <img src="./public/assets/img/readme-images/how-it-works-icons.PNG" alt="Logo">
-</h1>
-<br>
-
-# 1. Okta Authentication - User Model
+# Okta Authentication - User Model
 <h2 align="center">
 <img src="./public/assets/img/readme-images/login.PNG" alt="Screenshot of Application" width='50%' />
 </h2>
+
 
 * Login/Authenticate with username/email and password through Google/Okta
 * Store unique id from returned token in database
@@ -51,7 +54,7 @@ The front-end is built with the `Materialize` CSS framework and utilizes `Handle
 
 <br>
 
-# 2. Results - PetFinder API
+# Results - PetFinder API
 <h2 align="center">
 <img src="./public/assets/img/readme-images/screen1.PNG" alt="Screenshot of Application" width='50%' />
 </h2>
@@ -72,11 +75,14 @@ The front-end is built with the `Materialize` CSS framework and utilizes `Handle
 
 <br>
 
-# 3. Favorites Model - Handlebars
+# Favorites Model - Handlebars
 <h2 align="center">
 <img src="./public/assets/img/readme-images/screen2.PNG" alt="Screenshot of Application" width='50%' />
 </h2>
 
+```
+Favorites.findAll();  
+```
 * A user can favorite any animal they want and as many animals as they want
 * Get the favorites from the database with `findAll()` method
 * The call to the petfinder API gives us a promise
@@ -87,7 +93,7 @@ The front-end is built with the `Materialize` CSS framework and utilizes `Handle
 
 <br>
 
-# 4. Pet Profile - PetFinder API
+# Pet Profile - PetFinder API
 <h2 align="center">
 <img src="./public/assets/img/readme-images/profile.PNG" alt="Screenshot of Application" width='50%' />
 </h2>
@@ -101,7 +107,7 @@ The front-end is built with the `Materialize` CSS framework and utilizes `Handle
 
 <br>
 
-# 5. Map Integration 
+# Google Maps Embed API
 <h2 align="center">
 <img src="./public/assets/img/readme-images/map.PNG" alt="Screenshot of Application" width='50%' />
 </h2>
