@@ -24,7 +24,7 @@ The front-end is built with the `Materialize` CSS framework and utilizes `Handle
 
 # How It Works
 <h1 align="center">
-  <img src="./public/assets/img/readme-images/how-it-works-icons.PNG" alt="Logo">
+  <img src="public/assets/img/readme-images/how-it-works-icons.PNG" alt="Logo">
 </h1>
 <br>
 
@@ -44,7 +44,7 @@ The front-end is built with the `Materialize` CSS framework and utilizes `Handle
 
 # Okta Authentication - User Model
 <h2 align="center">
-<img src="./public/assets/img/readme-images/login.PNG" alt="Screenshot of Application" width='50%' />
+<img src="public/assets/img/readme-images/login.PNG" alt="Screenshot of Application" width='50%' />
 </h2>
 
 
@@ -56,7 +56,7 @@ The front-end is built with the `Materialize` CSS framework and utilizes `Handle
 
 # Results - PetFinder API
 <h2 align="center">
-<img src="./public/assets/img/readme-images/screen1.PNG" alt="Screenshot of Application" width='50%' />
+<img src="public/assets/img/readme-images/screen1.PNG" alt="Screenshot of Application" width='50%' />
 </h2>
 
 * Search for pet inputting filters:
@@ -77,7 +77,7 @@ The front-end is built with the `Materialize` CSS framework and utilizes `Handle
 
 # Favorites Model - Handlebars
 <h2 align="center">
-<img src="./public/assets/img/readme-images/screen2.PNG" alt="Screenshot of Application" width='50%' />
+<img src="public/assets/img/readme-images/screen2.PNG" alt="Screenshot of Application" width='50%' />
 </h2>
 
 ```
@@ -95,7 +95,7 @@ Favorites.findAll();
 
 # Pet Profile - PetFinder API
 <h2 align="center">
-<img src="./public/assets/img/readme-images/profile.PNG" alt="Screenshot of Application" width='50%' />
+<img src="public/assets/img/readme-images/profile.PNG" alt="Screenshot of Application" width='50%' />
 </h2>
 
 * Each pet profile page is dynamiclally generated using their Pet ID as a unique identifier
@@ -109,7 +109,7 @@ Favorites.findAll();
 
 # Google Maps Embed API
 <h2 align="center">
-<img src="./public/assets/img/readme-images/map.PNG" alt="Screenshot of Application" width='50%' />
+<img src="public/assets/img/readme-images/map.PNG" alt="Screenshot of Application" width='50%' />
 </h2>
 
 * Uses Google Maps Embed
