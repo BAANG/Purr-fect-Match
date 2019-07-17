@@ -32,6 +32,14 @@ The front-end is built with the `Materialize` CSS framework and utilizes `Handle
 
 <br>
 
+# GIF of Application
+
+<h2 align="center">
+<img src="public/assets/img/readme-images/site_gif.gif" alt="GIF of Application" width='100%' />
+</h2>
+
+<br>
+
 # Features
 * User sign in via Google/Okta
 * Option to create an Okta login
