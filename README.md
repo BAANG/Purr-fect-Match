@@ -1,19 +1,18 @@
 # Purr-fect-Match
+[Link to Deployed Application](https://purr-fect-match.herokuapp.com/)
 
-## Quickstart
-```
-export MYSQL_HOST=localhost
-export MYSQL_DBNAME=purrfect_match_DB
-export MYSQL_USER=root
-export MYSQL_KEY=<password>
-nodemon server.js
-```
 
-Purr-fect Match is a pet adoption service. We strive to help you choose the pet that matches perfectly with you in order to adopt it. 
+`Purr-fect Match` is a pet adoption service. We strive to help you find the an animal in need of a family for you to find information, find contact info and eventually adopt.
 
-To access the site, the user needs to authenticate. 
-* If it is the first time he visits the site, he must register and fill a form indicating his animal preferences and what he is looking for. 
-* If he is already registered, he is directly directed to the main page after login.
+This is a full-stack web-based application built upon the `Node.js` environment, heavily relying on `Express` for functionality and leverages third-party APIs used for populating our site's content as well as for authentication.
+
+`Purr-fect Match` also utilizes user authentication through `Okta` and saves those users' unique IDs in a cloud database so that the user can log in and bookmark/favorite animals that they are interested in to follow up on at a later time.
+
+The front-end is built with the `Materialize` CSS framework and utilizes `Handlebars` for templating elements of our application for continuous reuse, reducing the amount of hardcoding needed for all of the different pages and views within the application flow.
+
+<img src="./public/assets/img/readme-images/screen1.PNG" alt="Screenshot of Application" width='50%' />
+<img src="./public/assets/img/readme-images/screen2.PNG" alt="Screenshot of Application" width='50%' />
+<img src="./public/assets/img/readme-images/screen3.PNG" alt="Screenshot of Application" width='50%' />
 
 
 ## Used technologies
