@@ -87,19 +87,15 @@ The front-end is built with the `Materialize` CSS framework and utilizes `Handle
 
 <br>
 
-# Favorites Model - Handlebars
+# Favorites - PetFinder API
 <h2 align="center">
 <img src="public/assets/img/readme-images/screen2.png" alt="Screenshot of Application" width='50%' />
 </h2>
 
-```
-Favorites.findAll();  
-```
 * A user can favorite any animal they want and as many animals as they want
-* Get the favorites from the database with `findAll()` method
-* The call to the petfinder API gives us a promise
 * The user can click the heart in the top right corner to view all of their saved favorited pets
 * Use of handlebars to generate the favorites page
+* Call to the petfinder API to get animals data
 * On the favorites page, the user can delete favorites from their saved favorites. 
 * They also have the option to go to each pet profile page 
 

@@ -9,7 +9,7 @@ var petfinderAuth = require("../controllers/petfinder-auth");
 // =============================================================
 
 module.exports = function (app) {
-    app.get("/api/users", function (req, res) { //GET route for getting all of thbe users
+    app.get("/api/users", function (req, res) { //GET route for getting all of the users
 
         db.Users.findAll({})
             .then(function (result) {
